@@ -1,0 +1,472 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TareaGrupalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Carreras">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_facultad" Type="int" />
+        </EntityType>
+        <EntityType Name="Docente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cedula" Type="nvarchar" MaxLength="50" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="apellido" Type="nvarchar" MaxLength="50" />
+          <Property Name="fecha_naciemiento" Type="date" />
+          <Property Name="id_facultad" Type="int" />
+        </EntityType>
+        <EntityType Name="Estudiante">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cedula" Type="nvarchar" MaxLength="10" />
+          <Property Name="apellido" Type="nvarchar" MaxLength="50" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+          <Property Name="fecha_nacimiento" Type="date" />
+          <Property Name="estado_civil" Type="char" MaxLength="1" />
+          <Property Name="id_carrera" Type="int" />
+          <Property Name="tema" Type="nvarchar" MaxLength="50" />
+          <Property Name="id_docente" Type="int" />
+          <Property Name="id_genero" Type="int" />
+        </EntityType>
+        <EntityType Name="Facultad">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Genero">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Informes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mes" Type="int" />
+          <Property Name="año" Type="int" />
+          <Property Name="id_estudiante" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Carreras_Facultad">
+          <End Role="Facultad" Type="Self.Facultad" Multiplicity="0..1" />
+          <End Role="Carreras" Type="Self.Carreras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facultad">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Carreras">
+              <PropertyRef Name="id_facultad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Docente_Facultad">
+          <End Role="Facultad" Type="Self.Facultad" Multiplicity="0..1" />
+          <End Role="Docente" Type="Self.Docente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facultad">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Docente">
+              <PropertyRef Name="id_facultad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estudiante_Carreras1">
+          <End Role="Carreras" Type="Self.Carreras" Multiplicity="0..1" />
+          <End Role="Estudiante" Type="Self.Estudiante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carreras">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Estudiante">
+              <PropertyRef Name="id_carrera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estudiante_Docente">
+          <End Role="Docente" Type="Self.Docente" Multiplicity="0..1" />
+          <End Role="Estudiante" Type="Self.Estudiante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Docente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Estudiante">
+              <PropertyRef Name="id_docente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estudiante_Genero">
+          <End Role="Genero" Type="Self.Genero" Multiplicity="0..1" />
+          <End Role="Estudiante" Type="Self.Estudiante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genero">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Estudiante">
+              <PropertyRef Name="id_genero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Informes_Estudiante1">
+          <End Role="Estudiante" Type="Self.Estudiante" Multiplicity="0..1" />
+          <End Role="Informes" Type="Self.Informes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estudiante">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Informes">
+              <PropertyRef Name="id_estudiante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TareaGrupalModelStoreContainer">
+          <EntitySet Name="Carreras" EntityType="Self.Carreras" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Docente" EntityType="Self.Docente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estudiante" EntityType="Self.Estudiante" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Facultad" EntityType="Self.Facultad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genero" EntityType="Self.Genero" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Informes" EntityType="Self.Informes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Carreras_Facultad" Association="Self.FK_Carreras_Facultad">
+            <End Role="Facultad" EntitySet="Facultad" />
+            <End Role="Carreras" EntitySet="Carreras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Docente_Facultad" Association="Self.FK_Docente_Facultad">
+            <End Role="Facultad" EntitySet="Facultad" />
+            <End Role="Docente" EntitySet="Docente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estudiante_Carreras1" Association="Self.FK_Estudiante_Carreras1">
+            <End Role="Carreras" EntitySet="Carreras" />
+            <End Role="Estudiante" EntitySet="Estudiante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estudiante_Docente" Association="Self.FK_Estudiante_Docente">
+            <End Role="Docente" EntitySet="Docente" />
+            <End Role="Estudiante" EntitySet="Estudiante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estudiante_Genero" Association="Self.FK_Estudiante_Genero">
+            <End Role="Genero" EntitySet="Genero" />
+            <End Role="Estudiante" EntitySet="Estudiante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Informes_Estudiante1" Association="Self.FK_Informes_Estudiante1">
+            <End Role="Estudiante" EntitySet="Estudiante" />
+            <End Role="Informes" EntitySet="Informes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TareaGrupalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Carreras">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_facultad" Type="Int32" />
+          <NavigationProperty Name="Facultad" Relationship="Self.FK_Carreras_Facultad" FromRole="Carreras" ToRole="Facultad" />
+          <NavigationProperty Name="Estudiante" Relationship="Self.FK_Estudiante_Carreras1" FromRole="Carreras" ToRole="Estudiante" />
+        </EntityType>
+        <EntityType Name="Docente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cedula" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_naciemiento" Type="DateTime" Precision="0" />
+          <Property Name="id_facultad" Type="Int32" />
+          <NavigationProperty Name="Facultad" Relationship="Self.FK_Docente_Facultad" FromRole="Docente" ToRole="Facultad" />
+          <NavigationProperty Name="Estudiante" Relationship="Self.FK_Estudiante_Docente" FromRole="Docente" ToRole="Estudiante" />
+        </EntityType>
+        <EntityType Name="Estudiante">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cedula" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_nacimiento" Type="DateTime" Precision="0" />
+          <Property Name="estado_civil" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="id_carrera" Type="Int32" />
+          <Property Name="tema" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="id_docente" Type="Int32" />
+          <Property Name="id_genero" Type="Int32" />
+          <NavigationProperty Name="Carreras" Relationship="Self.FK_Estudiante_Carreras1" FromRole="Estudiante" ToRole="Carreras" />
+          <NavigationProperty Name="Docente" Relationship="Self.FK_Estudiante_Docente" FromRole="Estudiante" ToRole="Docente" />
+          <NavigationProperty Name="Genero" Relationship="Self.FK_Estudiante_Genero" FromRole="Estudiante" ToRole="Genero" />
+          <NavigationProperty Name="Informes" Relationship="Self.FK_Informes_Estudiante1" FromRole="Estudiante" ToRole="Informes" />
+        </EntityType>
+        <EntityType Name="Facultad">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Carreras" Relationship="Self.FK_Carreras_Facultad" FromRole="Facultad" ToRole="Carreras" />
+          <NavigationProperty Name="Docente" Relationship="Self.FK_Docente_Facultad" FromRole="Facultad" ToRole="Docente" />
+        </EntityType>
+        <EntityType Name="Genero">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Estudiante" Relationship="Self.FK_Estudiante_Genero" FromRole="Genero" ToRole="Estudiante" />
+        </EntityType>
+        <EntityType Name="Informes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mes" Type="Int32" />
+          <Property Name="año" Type="Int32" />
+          <Property Name="id_estudiante" Type="Int32" />
+          <NavigationProperty Name="Estudiante" Relationship="Self.FK_Informes_Estudiante1" FromRole="Informes" ToRole="Estudiante" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Carreras_Facultad">
+          <End Role="Facultad" Type="Self.Facultad" Multiplicity="0..1" />
+          <End Role="Carreras" Type="Self.Carreras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facultad">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Carreras">
+              <PropertyRef Name="id_facultad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estudiante_Carreras1">
+          <End Role="Carreras" Type="Self.Carreras" Multiplicity="0..1" />
+          <End Role="Estudiante" Type="Self.Estudiante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carreras">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Estudiante">
+              <PropertyRef Name="id_carrera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Docente_Facultad">
+          <End Role="Facultad" Type="Self.Facultad" Multiplicity="0..1" />
+          <End Role="Docente" Type="Self.Docente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facultad">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Docente">
+              <PropertyRef Name="id_facultad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estudiante_Docente">
+          <End Role="Docente" Type="Self.Docente" Multiplicity="0..1" />
+          <End Role="Estudiante" Type="Self.Estudiante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Docente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Estudiante">
+              <PropertyRef Name="id_docente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estudiante_Genero">
+          <End Role="Genero" Type="Self.Genero" Multiplicity="0..1" />
+          <End Role="Estudiante" Type="Self.Estudiante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genero">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Estudiante">
+              <PropertyRef Name="id_genero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Informes_Estudiante1">
+          <End Role="Estudiante" Type="Self.Estudiante" Multiplicity="0..1" />
+          <End Role="Informes" Type="Self.Informes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estudiante">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Informes">
+              <PropertyRef Name="id_estudiante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TareaGrupalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Carreras" EntityType="Self.Carreras" />
+          <EntitySet Name="Docente" EntityType="Self.Docente" />
+          <EntitySet Name="Estudiante" EntityType="Self.Estudiante" />
+          <EntitySet Name="Facultad" EntityType="Self.Facultad" />
+          <EntitySet Name="Genero" EntityType="Self.Genero" />
+          <EntitySet Name="Informes" EntityType="Self.Informes" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_Carreras_Facultad" Association="Self.FK_Carreras_Facultad">
+            <End Role="Facultad" EntitySet="Facultad" />
+            <End Role="Carreras" EntitySet="Carreras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estudiante_Carreras1" Association="Self.FK_Estudiante_Carreras1">
+            <End Role="Carreras" EntitySet="Carreras" />
+            <End Role="Estudiante" EntitySet="Estudiante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Docente_Facultad" Association="Self.FK_Docente_Facultad">
+            <End Role="Facultad" EntitySet="Facultad" />
+            <End Role="Docente" EntitySet="Docente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estudiante_Docente" Association="Self.FK_Estudiante_Docente">
+            <End Role="Docente" EntitySet="Docente" />
+            <End Role="Estudiante" EntitySet="Estudiante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estudiante_Genero" Association="Self.FK_Estudiante_Genero">
+            <End Role="Genero" EntitySet="Genero" />
+            <End Role="Estudiante" EntitySet="Estudiante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Informes_Estudiante1" Association="Self.FK_Informes_Estudiante1">
+            <End Role="Estudiante" EntitySet="Estudiante" />
+            <End Role="Informes" EntitySet="Informes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TareaGrupalModelStoreContainer" CdmEntityContainer="TareaGrupalEntities">
+          <EntitySetMapping Name="Carreras">
+            <EntityTypeMapping TypeName="TareaGrupalModel.Carreras">
+              <MappingFragment StoreEntitySet="Carreras">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id_facultad" ColumnName="id_facultad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Docente">
+            <EntityTypeMapping TypeName="TareaGrupalModel.Docente">
+              <MappingFragment StoreEntitySet="Docente">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="fecha_naciemiento" ColumnName="fecha_naciemiento" />
+                <ScalarProperty Name="id_facultad" ColumnName="id_facultad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estudiante">
+            <EntityTypeMapping TypeName="TareaGrupalModel.Estudiante">
+              <MappingFragment StoreEntitySet="Estudiante">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="estado_civil" ColumnName="estado_civil" />
+                <ScalarProperty Name="id_carrera" ColumnName="id_carrera" />
+                <ScalarProperty Name="tema" ColumnName="tema" />
+                <ScalarProperty Name="id_docente" ColumnName="id_docente" />
+                <ScalarProperty Name="id_genero" ColumnName="id_genero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Facultad">
+            <EntityTypeMapping TypeName="TareaGrupalModel.Facultad">
+              <MappingFragment StoreEntitySet="Facultad">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genero">
+            <EntityTypeMapping TypeName="TareaGrupalModel.Genero">
+              <MappingFragment StoreEntitySet="Genero">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Informes">
+            <EntityTypeMapping TypeName="TareaGrupalModel.Informes">
+              <MappingFragment StoreEntitySet="Informes">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="mes" ColumnName="mes" />
+                <ScalarProperty Name="año" ColumnName="año" />
+                <ScalarProperty Name="id_estudiante" ColumnName="id_estudiante" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="TareaGrupalModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

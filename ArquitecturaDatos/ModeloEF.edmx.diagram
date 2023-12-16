@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="429b406a834240f4a533e3e31cbba8af" Name="Diagram1">
+        <EntityTypeShape EntityType="TareaGrupalModel.Carreras" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="TareaGrupalModel.Docente" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TareaGrupalModel.Estudiante" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TareaGrupalModel.Facultad" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TareaGrupalModel.Genero" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TareaGrupalModel.Informes" Width="1.5" PointX="7.5" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TareaGrupalModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="TareaGrupalModel.FK_Carreras_Facultad" ManuallyRouted="false" />
+        <AssociationConnector Association="TareaGrupalModel.FK_Estudiante_Carreras1" ManuallyRouted="false" />
+        <AssociationConnector Association="TareaGrupalModel.FK_Docente_Facultad" ManuallyRouted="false" />
+        <AssociationConnector Association="TareaGrupalModel.FK_Estudiante_Docente" ManuallyRouted="false" />
+        <AssociationConnector Association="TareaGrupalModel.FK_Estudiante_Genero" ManuallyRouted="false" />
+        <AssociationConnector Association="TareaGrupalModel.FK_Informes_Estudiante1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
