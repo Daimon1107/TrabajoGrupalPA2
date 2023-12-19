@@ -50,7 +50,12 @@ namespace ArquitecturaDatos
 
         public static EstudianteEntidad NuevoEstudianteCSV(EstudianteEntidad estudiante)
         {
-            throw new NotImplementedException();
+			try {
+				return null;
+			} catch (Exception) {
+
+				throw;
+			}
         }
 
         public static EstudianteEntidad ActualizarEstudiante(EstudianteEntidad estudiante)

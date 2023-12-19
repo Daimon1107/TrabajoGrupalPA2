@@ -184,7 +184,8 @@ namespace ArquitecturaPresentacion
 
             //}
 
-            estudiante = EstudianteNegocio.AñadirEstudianteCSV(verificar);
+            // TODO: Resolver este error
+            //estudiante = EstudianteNegocio.AñadirEstudianteCSV(verificar);
 
             if (estudiante != null)
             {

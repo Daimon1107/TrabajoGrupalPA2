@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ArquitecturaPresentacion.Properties {
+namespace ArquitecturaPresentación.Properties {
 
 
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

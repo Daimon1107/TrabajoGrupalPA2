@@ -55,7 +55,8 @@
             // pictureBox1
             // 
             this.pictureBox1.ErrorImage = null;
-            this.pictureBox1.Image = global::ArquitecturaPresentacion.Properties.Resources.image;
+            //TODO: Descomentar esto
+            //this.pictureBox1.Image = global::ArquitecturaPresentacion.Properties.Resources.image;
             this.pictureBox1.Location = new System.Drawing.Point(64, 248);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
