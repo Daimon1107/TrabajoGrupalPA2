@@ -4,11 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-<<<<<<< HEAD
-      <Diagram DiagramId="1482f7d94ddf449ba4bd5e3b6d87f717" Name="Diagram1">
-=======
-      <Diagram DiagramId="429b406a834240f4a533e3e31cbba8af" Name="Diagram1">
->>>>>>> 17643e0074c44032c439036b9a81f5b195ffa56f
+      <Diagram DiagramId="98b37ab973fa441c8559f57d2d0e074d" Name="Diagram1">
         <EntityTypeShape EntityType="TareaGrupalModel.Carreras" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
         <EntityTypeShape EntityType="TareaGrupalModel.Docente" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TareaGrupalModel.Estudiante" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
