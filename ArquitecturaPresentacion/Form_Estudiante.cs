@@ -9,6 +9,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+<<<<<<< HEAD
+=======
+using System.IO;
+
+>>>>>>> 17643e0074c44032c439036b9a81f5b195ffa56f
 
 namespace ArquitecturaPresentacion
 {
@@ -159,5 +164,85 @@ namespace ArquitecturaPresentacion
             menu.Show();
             this.Visible = false;
         }
+<<<<<<< HEAD
+=======
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            
+          var verificar =   LeerDatosCSV("C:\\Users\\User\\Desktop\\Universidad\\Programación Avanzada\\estudianteDatos.csv");
+            
+            Console.WriteLine("termino de leer");
+
+            //foreach (var item in verificar)
+            //{
+            //    Console.WriteLine("id: "+item.Id);
+            //    Console.WriteLine("cedula: " + item.Cedula);
+            //    Console.WriteLine("nombre: " + item.Nombre);
+            //    Console.WriteLine("apellido: " + item.Apellido);
+            //    Console.WriteLine("fecha nacimiento: " + item.FechaNacimiento);
+            //    Console.WriteLine("estado civil: " + item.EstadoCivil);
+            //    Console.WriteLine("carrera: " + item.IdCarrera);
+            //    Console.WriteLine("tema: " + item.Tema);
+            //    Console.WriteLine("docente: " + item.IdDocente);
+            //    Console.WriteLine("genero: " + item.IdGenero);
+
+            //}
+
+            estudiante = EstudianteNegocio.AñadirEstudianteCSV(verificar);
+
+            if (estudiante != null)
+            {
+                textBox_Id.Text = estudiante.Id.ToString();
+                CargarListadoEstudiantes();
+                MessageBox.Show("Los datos se guardaron exitosamente");
+            }
+            else
+            {
+                MessageBox.Show("Los datos NO se guardaron");
+            }
+
+        }
+
+        static List<EstudianteEntidad> LeerDatosCSV(string filepath)
+        {
+
+            Console.WriteLine();
+
+            var registros = new List<EstudianteEntidad>();
+
+            if (File.Exists(filepath))
+            {
+                string[] lines = File.ReadAllLines(filepath);
+
+                foreach (string line in lines.Skip(1))
+                {
+                    string[] parts = line.Split(';');
+
+                    if (parts.Length >= 4)
+                    {
+
+                        int id = Convert.ToInt32(parts[0]);
+                        string cedula = parts[1];
+                        string nombre = parts[2];
+                        string apellido = parts[3];
+                        DateTime fechaNacimiento = DateTime.Parse(parts[4]);
+                        char estadoCivil = Char.Parse(parts[5]);
+                        int idCarrera = Convert.ToInt32(parts[6]);
+                        string tema = parts[7];
+                        int idDocente = Convert.ToInt32(parts[8]);
+                        int idGenero = Convert.ToInt32(parts[9]);
+
+                        var registro = new EstudianteEntidad(id,cedula,nombre,
+                            apellido,fechaNacimiento,estadoCivil,idCarrera,tema,idDocente,idGenero);
+
+                        registros.Add(registro);
+                    }
+                }
+            }
+            return registros;
+        }
+>>>>>>> 17643e0074c44032c439036b9a81f5b195ffa56f
     }
 }

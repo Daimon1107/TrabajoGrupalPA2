@@ -6,7 +6,11 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{47651795-79C1-48D5-B4B7-3DE145EDD84B}</ProjectGuid>
+<<<<<<< HEAD
     <OutputType>WinExe</OutputType>
+=======
+    <OutputType>Exe</OutputType>
+>>>>>>> 17643e0074c44032c439036b9a81f5b195ffa56f
     <RootNamespace>ArquitecturaPresentacion</RootNamespace>
     <AssemblyName>ArquitecturaPresentacion</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
@@ -35,6 +39,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+<<<<<<< HEAD
+=======
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+>>>>>>> 17643e0074c44032c439036b9a81f5b195ffa56f
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
@@ -68,12 +78,15 @@
     <Compile Include="Form_Docente.Designer.cs">
       <DependentUpon>Form_Docente.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Form_Documentos.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form_Documentos.Designer.cs">
       <DependentUpon>Form_Documentos.cs</DependentUpon>
     </Compile>
+=======
+>>>>>>> 17643e0074c44032c439036b9a81f5b195ffa56f
     <Compile Include="Form_Estudiante.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +117,15 @@
     <Compile Include="Form_Menu.Designer.cs">
       <DependentUpon>Form_Menu.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
+=======
+    <Compile Include="IngresoDatos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IngresoDatos.Designer.cs">
+      <DependentUpon>IngresoDatos.cs</DependentUpon>
+    </Compile>
+>>>>>>> 17643e0074c44032c439036b9a81f5b195ffa56f
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form_Carrera.resx">
@@ -112,9 +134,12 @@
     <EmbeddedResource Include="Form_Docente.resx">
       <DependentUpon>Form_Docente.cs</DependentUpon>
     </EmbeddedResource>
+<<<<<<< HEAD
     <EmbeddedResource Include="Form_Documentos.resx">
       <DependentUpon>Form_Documentos.cs</DependentUpon>
     </EmbeddedResource>
+=======
+>>>>>>> 17643e0074c44032c439036b9a81f5b195ffa56f
     <EmbeddedResource Include="Form_Estudiante.resx">
       <DependentUpon>Form_Estudiante.cs</DependentUpon>
     </EmbeddedResource>
@@ -130,6 +155,12 @@
     <EmbeddedResource Include="Form_Menu.resx">
       <DependentUpon>Form_Menu.cs</DependentUpon>
     </EmbeddedResource>
+<<<<<<< HEAD
+=======
+    <EmbeddedResource Include="IngresoDatos.resx">
+      <DependentUpon>IngresoDatos.cs</DependentUpon>
+    </EmbeddedResource>
+>>>>>>> 17643e0074c44032c439036b9a81f5b195ffa56f
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

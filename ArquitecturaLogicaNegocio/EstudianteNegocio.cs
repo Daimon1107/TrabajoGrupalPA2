@@ -19,6 +19,14 @@ namespace ArquitecturaLogicaNegocio
             return EstudianteDatos.ActualizarEstudiante(estudiante);
 
         }
+<<<<<<< HEAD
+=======
+
+        public static EstudianteEntidad AñadirEstudianteCSV(EstudianteEntidad estudiante)
+        {
+            return EstudianteDatos.NuevoEstudianteCSV(estudiante);
+        }
+>>>>>>> 17643e0074c44032c439036b9a81f5b195ffa56f
         public static List<EstudianteEntidad> DevolverListaEstudiantes()
         {
              return EstudianteDatos.DevolverListaEstudiantes();
@@ -37,5 +45,9 @@ namespace ArquitecturaLogicaNegocio
         {
             return EstudianteDatos.EliminarEstudiante(id);
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 17643e0074c44032c439036b9a81f5b195ffa56f
     }
 }
