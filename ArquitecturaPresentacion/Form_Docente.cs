@@ -137,5 +137,9 @@ namespace ArquitecturaPresentacion
             menu.Show();
             this.Visible = false;
         }
+
+        private void comboBox_Facultad_SelectedIndexChanged(object sender, EventArgs e) {
+
+        }
     }
 }
