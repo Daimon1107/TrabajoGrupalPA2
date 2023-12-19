@@ -5,12 +5,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{47651795-79C1-48D5-B4B7-3DE145EDD84B}</ProjectGuid>
-<<<<<<< HEAD
+    <ProjectGuid>{5C038CE1-93BD-489F-BF12-3FA685E96DA6}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-=======
-    <OutputType>Exe</OutputType>
->>>>>>> 17643e0074c44032c439036b9a81f5b195ffa56f
     <RootNamespace>ArquitecturaPresentacion</RootNamespace>
     <AssemblyName>ArquitecturaPresentacion</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
@@ -39,12 +35,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-<<<<<<< HEAD
-=======
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
->>>>>>> 17643e0074c44032c439036b9a81f5b195ffa56f
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
@@ -66,6 +56,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Form_Búsqueda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_Búsqueda.Designer.cs">
+      <DependentUpon>Form_Búsqueda.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_Carrera.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,32 +74,29 @@
     <Compile Include="Form_Docente.Designer.cs">
       <DependentUpon>Form_Docente.cs</DependentUpon>
     </Compile>
-<<<<<<< HEAD
     <Compile Include="Form_Documentos.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form_Documentos.Designer.cs">
       <DependentUpon>Form_Documentos.cs</DependentUpon>
     </Compile>
-=======
->>>>>>> 17643e0074c44032c439036b9a81f5b195ffa56f
     <Compile Include="Form_Estudiante.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form_Estudiante.Designer.cs">
       <DependentUpon>Form_Estudiante.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form_Búsqueda.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form_Búsqueda.Designer.cs">
-      <DependentUpon>Form_Búsqueda.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form_Facultad.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form_Facultad.Designer.cs">
       <DependentUpon>Form_Facultad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form_IngresoDatos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form_IngresoDatos.Designer.cs">
+      <DependentUpon>Form_IngresoDatos.cs</DependentUpon>
     </Compile>
     <Compile Include="Form_Login.cs">
       <SubType>Form</SubType>
@@ -117,50 +110,8 @@
     <Compile Include="Form_Menu.Designer.cs">
       <DependentUpon>Form_Menu.cs</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-=======
-    <Compile Include="IngresoDatos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="IngresoDatos.Designer.cs">
-      <DependentUpon>IngresoDatos.cs</DependentUpon>
-    </Compile>
->>>>>>> 17643e0074c44032c439036b9a81f5b195ffa56f
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form_Carrera.resx">
-      <DependentUpon>Form_Carrera.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form_Docente.resx">
-      <DependentUpon>Form_Docente.cs</DependentUpon>
-    </EmbeddedResource>
-<<<<<<< HEAD
-    <EmbeddedResource Include="Form_Documentos.resx">
-      <DependentUpon>Form_Documentos.cs</DependentUpon>
-    </EmbeddedResource>
-=======
->>>>>>> 17643e0074c44032c439036b9a81f5b195ffa56f
-    <EmbeddedResource Include="Form_Estudiante.resx">
-      <DependentUpon>Form_Estudiante.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form_Búsqueda.resx">
-      <DependentUpon>Form_Búsqueda.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form_Facultad.resx">
-      <DependentUpon>Form_Facultad.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form_Login.resx">
-      <DependentUpon>Form_Login.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form_Menu.resx">
-      <DependentUpon>Form_Menu.cs</DependentUpon>
-    </EmbeddedResource>
-<<<<<<< HEAD
-=======
-    <EmbeddedResource Include="IngresoDatos.resx">
-      <DependentUpon>IngresoDatos.cs</DependentUpon>
-    </EmbeddedResource>
->>>>>>> 17643e0074c44032c439036b9a81f5b195ffa56f
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -194,9 +145,6 @@
       <Project>{6f5ae98a-3909-483a-a9ce-dcf306b84c30}</Project>
       <Name>ArquitecturaLogicaNegocio</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\login.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\image.png" />
