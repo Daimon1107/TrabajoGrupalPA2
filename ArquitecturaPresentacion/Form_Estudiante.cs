@@ -9,11 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-<<<<<<< HEAD
-=======
 using System.IO;
-
->>>>>>> 17643e0074c44032c439036b9a81f5b195ffa56f
 
 namespace ArquitecturaPresentacion
 {
@@ -164,8 +160,6 @@ namespace ArquitecturaPresentacion
             menu.Show();
             this.Visible = false;
         }
-<<<<<<< HEAD
-=======
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -243,6 +237,5 @@ namespace ArquitecturaPresentacion
             }
             return registros;
         }
->>>>>>> 17643e0074c44032c439036b9a81f5b195ffa56f
     }
 }

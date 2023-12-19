@@ -5,7 +5,7 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="TareaGrupalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Carreras">
+		  <EntityType Name="Carreras">
           <Key>
             <PropertyRef Name="id" />
           </Key>
@@ -463,11 +463,7 @@
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
-<<<<<<< HEAD
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
-=======
-        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
->>>>>>> 17643e0074c44032c439036b9a81f5b195ffa56f
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

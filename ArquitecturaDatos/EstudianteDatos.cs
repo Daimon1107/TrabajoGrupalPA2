@@ -47,17 +47,13 @@ namespace ArquitecturaDatos
 				throw;
 			}
 		}
-<<<<<<< HEAD
 
-		public static EstudianteEntidad ActualizarEstudiante(EstudianteEntidad estudiante)
-=======
         public static EstudianteEntidad NuevoEstudianteCSV(EstudianteEntidad estudiante)
         {
             throw new NotImplementedException();
         }
 
         public static EstudianteEntidad ActualizarEstudiante(EstudianteEntidad estudiante)
->>>>>>> 17643e0074c44032c439036b9a81f5b195ffa56f
 		{
 
 			try
@@ -239,9 +235,7 @@ namespace ArquitecturaDatos
 			}
 		}
 
-<<<<<<< HEAD
-	}
-=======
+
         public static List<EstudianteEntidad> DevolverListaCSV()
         {
             throw new NotImplementedException();
@@ -249,6 +243,5 @@ namespace ArquitecturaDatos
 
         
     }
->>>>>>> 17643e0074c44032c439036b9a81f5b195ffa56f
 
 }
