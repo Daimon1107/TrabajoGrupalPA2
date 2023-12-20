@@ -51,5 +51,12 @@ namespace ArquitecturaPresentacion
             docente.Show();
             this.Visible = false;
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            IngresoDatos docente = new IngresoDatos();
+            docente.Show();
+            this.Visible = false;
+        }
     }
 }

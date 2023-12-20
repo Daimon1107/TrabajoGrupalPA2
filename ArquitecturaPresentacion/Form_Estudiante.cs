@@ -185,18 +185,18 @@ namespace ArquitecturaPresentacion
 
             //}
 
-            estudiante = EstudianteNegocio.AñadirEstudianteCSV(verificar);
+            //estudiante = EstudianteNegocio.AñadirEstudianteCSV(verificar);
 
-            if (estudiante != null)
-            {
-                textBox_Id.Text = estudiante.Id.ToString();
-                CargarListadoEstudiantes();
-                MessageBox.Show("Los datos se guardaron exitosamente");
-            }
-            else
-            {
-                MessageBox.Show("Los datos NO se guardaron");
-            }
+            //if (estudiante != null)
+            //{
+            //    textBox_Id.Text = estudiante.Id.ToString();
+            //    CargarListadoEstudiantes();
+            //    MessageBox.Show("Los datos se guardaron exitosamente");
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Los datos NO se guardaron");
+            //}
 
         }
 

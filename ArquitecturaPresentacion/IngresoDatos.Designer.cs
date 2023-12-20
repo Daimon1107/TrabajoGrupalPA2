@@ -37,6 +37,7 @@
             this.ClientSize = new System.Drawing.Size(1396, 527);
             this.Name = "IngresoDatos";
             this.Text = "IngresoDatos";
+            this.Load += new System.EventHandler(this.IngresoDatos_Load);
             this.ResumeLayout(false);
 
         }

@@ -23,6 +23,9 @@ namespace ArquitecturaPresentacion
         {
         }
 
+        private void IngresoDatos_Load(object sender, EventArgs e)
+        {
 
+        }
     }
 }
