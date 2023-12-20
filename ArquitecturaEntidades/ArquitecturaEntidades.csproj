@@ -42,13 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CarreraEntidad.cs" />
-    <Compile Include="DocenteEntidad.cs" />
-    <Compile Include="EstudianteEntidad.cs" />
+    <Compile Include="CuentaDocenteEntidad.cs" />
+    <Compile Include="EstudianteTesisEntidad.cs" />
     <Compile Include="FacultadEntidad.cs" />
     <Compile Include="FiltradorBuilderEntidad.cs" />
     <Compile Include="GéneroEntidad.cs" />
     <Compile Include="InformeEntidad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UsuarioEntidad.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

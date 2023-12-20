@@ -13,42 +13,42 @@ namespace ArquitecturaDatos
 {
 	public static class EstudianteDatos
 	{
-		public static EstudianteEntidad NuevoEstudiante(EstudianteEntidad estudiante)
-		{
-			try
-			{
-				Estudiante estudianteEF = new Estudiante();
-				estudianteEF.id = estudiante.Id;
-				estudianteEF.nombre = estudiante.Nombre;
-				estudianteEF.apellido = estudiante.Apellido;
-				estudianteEF.cedula = estudiante.Cedula;
-				estudianteEF.fecha_nacimiento = estudiante.FechaNacimiento;
-				estudianteEF.estado_civil = estudiante.EstadoCivil.ToString();
-				estudianteEF.id_carrera = estudiante.IdCarrera;
-				estudianteEF.tema = estudiante.Tema;
-				estudianteEF.id_docente = estudiante.IdDocente;
-				estudianteEF.id_genero = estudiante.IdGenero;
+		//public static EstudianteTesisEntidad NuevoEstudiante(EstudianteTesisEntidad estudiante)
+		//{
+		//	try
+		//	{
+		//		Estudiante estudianteEF = new Estudiante();
+		//		estudianteEF.id = estudiante.Id;
+		//		estudianteEF.nombre = estudiante.Nombre;
+		//		estudianteEF.apellido = estudiante.Apellido;
+		//		estudianteEF.cedula = estudiante.Cedula;
+		//		estudianteEF.fecha_nacimiento = estudiante.FechaNacimiento;
+		//		estudianteEF.estado_civil = estudiante.EstadoCivil.ToString();
+		//		estudianteEF.id_carrera = estudiante.IdCarrera;
+		//		estudianteEF.tema = estudiante.Tema;
+		//		estudianteEF.id_docente = estudiante.IdDocente;
+		//		estudianteEF.id_genero = estudiante.IdGenero;
 
 	
-				using (TareaGrupalEntities contexto = new TareaGrupalEntities())
-				{
-					contexto.Estudiante.Add(estudianteEF);
-					contexto.SaveChanges();
-				}
+		//		using (TareaGrupalEntities contexto = new TareaGrupalEntities())
+		//		{
+		//			contexto.Estudiante.Add(estudianteEF);
+		//			contexto.SaveChanges();
+		//		}
 
-				estudiante.Id = estudianteEF.id;
-				return estudiante;
-			}
+		//		estudiante.Id = estudianteEF.id;
+		//		return estudiante;
+		//	}
 
 
-			catch (Exception)
-			{
+		//	catch (Exception)
+		//	{
 
-				throw;
-			}
-		}
+		//		throw;
+		//	}
+		//}
 
-        public static EstudianteEntidad NuevoEstudianteCSV(EstudianteEntidad estudiante)
+        public static EstudianteTesisEntidad NuevoEstudianteCSV(EstudianteTesisEntidad estudiante)
         {
 			try {
 				return null;
@@ -58,59 +58,57 @@ namespace ArquitecturaDatos
 			}
         }
 
-        public static EstudianteEntidad ActualizarEstudiante(EstudianteEntidad estudiante)
-		{
+  //      public static EstudianteTesisEntidad ActualizarEstudiante(EstudianteTesisEntidad estudiante)
+		//{
 
-			try
-			{
+		//	try
+		//	{
 
-				Estudiante estudianteEF = new Estudiante();
-                estudianteEF.id = estudiante.Id;
-                estudianteEF.nombre = estudiante.Nombre;
-                estudianteEF.apellido = estudiante.Apellido;
-                estudianteEF.cedula = estudiante.Cedula;
-                estudianteEF.fecha_nacimiento = estudiante.FechaNacimiento;
-                estudianteEF.estado_civil = estudiante.EstadoCivil.ToString();
-                estudianteEF.id_carrera = estudiante.IdCarrera;
-                estudianteEF.tema = estudiante.Tema;
-                estudianteEF.id_docente = estudiante.IdDocente;
-                estudianteEF.id_genero = estudiante.IdGenero;
+		//		Estudiante estudianteEF = new Estudiante();
+  //              estudianteEF.id = estudiante.Id;
+  //              estudianteEF.nombre = estudiante.Nombre;
+  //              estudianteEF.apellido = estudiante.Apellido;
+  //              estudianteEF.cedula = estudiante.Cedula;
+  //              estudianteEF.fecha_nacimiento = estudiante.FechaNacimiento;
+  //              estudianteEF.estado_civil = estudiante.EstadoCivil.ToString();
+  //              estudianteEF.id_carrera = estudiante.IdCarrera;
+  //              estudianteEF.tema = estudiante.Tema;
+  //              estudianteEF.id_docente = estudiante.IdDocente;
+  //              estudianteEF.id_genero = estudiante.IdGenero;
 
-                using (TareaGrupalEntities contexto = new TareaGrupalEntities())
-				{
-					contexto.Estudiante.AddOrUpdate(estudianteEF);
-					contexto.SaveChanges();
+  //              using (TareaGrupalEntities contexto = new TareaGrupalEntities())
+		//		{
+		//			contexto.Estudiante.AddOrUpdate(estudianteEF);
+		//			contexto.SaveChanges();
 				
-				}
-				return estudiante;
-			}
-			catch (Exception)
-			{
+		//		}
+		//		return estudiante;
+		//	}
+		//	catch (Exception)
+		//	{
 
-				throw;
-			}
+		//		throw;
+		//	}
 		
-		}
+		//}
 		
-		public static List<EstudianteEntidad> DevolverListaEstudiantes()
+		public static List<EstudianteTesisEntidad> DevolverListaEstudiantes()
 		{
 			try
 			{
-				List<EstudianteEntidad> listaEstudiantes = new List<EstudianteEntidad>();
+				List<EstudianteTesisEntidad> listaEstudiantes = new List<EstudianteTesisEntidad>();
 				
 				using (TareaGrupalEntities contexto = new TareaGrupalEntities()) {
 
-					var ms = contexto.Estudiante.Include("Genero").
-												Include("Docente").
-												Include("Informes").
-												Include("Carreras").ToList();
+					var ms = contexto.EstudiantesTesis.ToList();
 
 					foreach (var item in ms)
 					{
-						listaEstudiantes.Add(new EstudianteEntidad(item.id, item.cedula, 
+						listaEstudiantes.Add(new EstudianteTesisEntidad(item.id, item.cedula, 
 							item.nombre, item.apellido, (DateTime)item.fecha_nacimiento, 
-							char.Parse(item.estado_civil), (int)item.id_carrera, 
-							item.tema, (int)item.id_docente, (int)item.id_genero));
+							char.Parse(item.estado_civil), (int)item.id_carrera, item.Carreras.nombre, 
+							item.tema, (int)item.id_docente,item.CuentasDocente.Usuarios.nombre, (int)item.id_genero,
+							item.Géneros.nombre, (int) item.mesAP, (int) item.añoAP));
 					
 					}	
 				}
@@ -123,92 +121,95 @@ namespace ArquitecturaDatos
 			}
 		}
 
-		public static EstudianteEntidad DevolverEstudianteId(int id)
-		{
-			try
-			{
+		//public static EstudianteTesisEntidad DevolverEstudianteId(int id)
+		//{
+		//	try
+		//	{
 
-				EstudianteEntidad estudianteEntidad = new EstudianteEntidad();
+		//		EstudianteTesisEntidad estudianteEntidad = new EstudianteTesisEntidad();
 
-				using (TareaGrupalEntities contexto = new TareaGrupalEntities())
-				{
-                    var estudianteEF = contexto.Estudiante.Include("Genero").
-                                                Include("Docente").
-                                                Include("Informes").
-                                                Include("Carreras").FirstOrDefault(p => p.id == id);
+		//		using (TareaGrupalEntities contexto = new TareaGrupalEntities())
+		//		{
+		//                  var estudianteEF = contexto.EstudiantesTesis.Include("Genero").
+		//                                              Include("Docente").
+		//                                              Include("Informes").
+		//                                              Include("Carreras").FirstOrDefault(p => p.id == id);
 
-                    estudianteEntidad.Id = estudianteEF.id;
-                    estudianteEntidad.Nombre = estudianteEF.nombre;
-                    estudianteEntidad.Apellido = estudianteEF.apellido;
-                    estudianteEntidad.Cedula = estudianteEF.cedula;
-                    estudianteEntidad.FechaNacimiento = (DateTime) estudianteEF.fecha_nacimiento;
-                    estudianteEntidad.EstadoCivil= char.Parse(estudianteEF.estado_civil);
-                    estudianteEntidad.IdCarrera = (int)estudianteEF.id_carrera;
-                    estudianteEntidad.Tema= estudianteEF.tema;
-                    estudianteEntidad.IdDocente = (int)estudianteEF.id_docente;
-                    estudianteEntidad.IdGenero = (int)estudianteEF.id_genero;
-                }
-				return estudianteEntidad;
+		//                  estudianteEntidad.Id = estudianteEF.id;
+		//                  estudianteEntidad.Nombre = estudianteEF.nombre;
+		//                  estudianteEntidad.Apellido = estudianteEF.apellido;
+		//                  estudianteEntidad.Cedula = estudianteEF.cedula;
+		//                  estudianteEntidad.FechaNacimiento = (DateTime) estudianteEF.fecha_nacimiento;
+		//                  estudianteEntidad.EstadoCivil= char.Parse(estudianteEF.estado_civil);
+		//                  estudianteEntidad.IdCarrera = (int)estudianteEF.id_carrera;
+		//                  estudianteEntidad.Tema= estudianteEF.tema;
+		//                  estudianteEntidad.IdDocente = (int)estudianteEF.id_docente;
+		//                  estudianteEntidad.IdGenero = (int)estudianteEF.id_genero;
+		//              }
+		//		return estudianteEntidad;
 
-            }
-			catch (Exception)
-			{
+		//          }
+		//	catch (Exception)
+		//	{
 
-				throw;
-			}
-		
-		}
+		//		throw;
+		//	}
 
-        public static bool EliminarEstudianteId(int id)
-        {
-            try
-            {
-                using (TareaGrupalEntities contexto = new TareaGrupalEntities())
-                {
-                    Docente docenteEF = contexto.Docente
-                                                  .FirstOrDefault(p => p.id == id);
-                    contexto.Docente.Remove(docenteEF);
-                    contexto.SaveChanges();
-                    return true;
-                }
+		//}
 
-            }
-            catch (Exception)
-            {
-                return false;
-                throw;
-            }
-        }
+		//      public static bool EliminarEstudianteId(int id)
+		//      {
+		//          try
+		//          {
+		//              using (TareaGrupalEntities contexto = new TareaGrupalEntities())
+		//              {
+		//                  EstudiantesTesis docenteEF = contexto.EstudiantesTesis
+		//                                                .FirstOrDefault(p => p.id == id);
+		//                  contexto.EstudiantesTesis.Remove(docenteEF);
+		//                  contexto.SaveChanges();
+		//                  return true;
+		//              }
 
-        public static List<EstudianteEntidad> DevolverListaEstudiantesFiltro(FiltradorBuilderEntidad filtro) {
+		//          }
+		//          catch (Exception)
+		//          {
+		//              return false;
+		//              throw;
+		//          }
+		//      }
+
+		public static List<EstudianteTesisEntidad> DevolverListaEstudiantesFiltro(FiltradorBuilderEntidad filtro) {
 			try {
-				List<EstudianteEntidad> listaEstudiantes = new List<EstudianteEntidad>();
-				List<Estudiante> listaEstudiantesLINQ = new List<Estudiante>();
+				List<EstudianteTesisEntidad> listaEstudiantes = new List<EstudianteTesisEntidad>();
+				List<EstudiantesTesis> listaEstudiantesEF = new List<EstudiantesTesis>();
 				using (TareaGrupalEntities contexto = new TareaGrupalEntities()) {
-                    var resultado = contexto.Estudiante.SqlQuery(@"SELECT id
+					var resultado = contexto.EstudiantesTesis.SqlQuery(@"SELECT id
                                                                       ,cedula
 																	  ,apellido
 																	  ,nombre
+																	  ,fecha_nacimiento
+																	  ,estado_civil
 																	  ,id_carrera
-																	  ,id_genero
-																	  ,añoAP
-																	  ,mesAP
-																	  ,id_docente
-																	  FROM Estudiante
+																	  ,tema
+																	  ,[id_docente]
+																	  ,[id_genero]
+																	  ,[mesAP]
+																	  ,[añoAP]
+																	  ,[foto]
+																	  FROM [EstudiantesTesis]
 																	  " +
-                                            filtro.ConstruirTextoFiltro(), filtro.ConstruirParametros());
+											filtro.ConstruirTextoFiltro(), filtro.ConstruirParametros());
 
-                    listaEstudiantesLINQ = resultado.ToList();
+					listaEstudiantesEF = resultado.ToList();
 
 
-					//foreach (var item in listaEstudiantesLINQ) {
-					//	listaEstudiantes.Add(new EstudianteEntidad(item.id, item.cedula,
-					//												item.apellido, item.nombre,
-					//											(int) item.id_carrera, item.Carreras.nombre, (int) item.id_genero,
-					//											item.Genero.nombre, (int) item.añoAP,
-					//											(int) item.mesAP,
-					//											(int) item.id_docente));
-					//}
+					foreach (var item in listaEstudiantesEF) {
+						listaEstudiantes.Add(new EstudianteTesisEntidad(item.id, item.cedula,
+                            item.nombre, item.apellido, (DateTime) item.fecha_nacimiento,
+                            char.Parse(item.estado_civil), (int) item.id_carrera, item.Carreras.nombre,
+                            item.tema, (int) item.id_docente, item.CuentasDocente.Usuarios.nombre, (int) item.id_genero,
+                            item.Géneros.nombre, (int) item.mesAP, (int) item.añoAP));
+					}
 
 					return listaEstudiantes;
 
@@ -218,35 +219,35 @@ namespace ArquitecturaDatos
 			}
 		}
 
-		public static bool EliminarEstudiante(int id)
-		{
-			try
-			{
-				using(TareaGrupalEntities contexto =  new TareaGrupalEntities())
-				{
+		//public static bool EliminarEstudiante(int id)
+		//{
+		//	try
+		//	{
+		//		using(TareaGrupalEntities contexto =  new TareaGrupalEntities())
+		//		{
 
-					Estudiante estudianteEF = contexto.Estudiante.FirstOrDefault(p=> p.id == id);
-				contexto.Estudiante.Remove(estudianteEF);
-					contexto.SaveChanges();
-					return true;
-				
-				}
+		//			Estudiante estudianteEF = contexto.Estudiante.FirstOrDefault(p=> p.id == id);
+		//		contexto.Estudiante.Remove(estudianteEF);
+		//			contexto.SaveChanges();
+		//			return true;
 
-			}
-			catch (Exception)
-			{
-				return false;
-				throw;
-			}
-		}
+		//		}
+
+		//	}
+		//	catch (Exception)
+		//	{
+		//		return false;
+		//		throw;
+		//	}
+		//}
 
 
-        public static List<EstudianteEntidad> DevolverListaCSV()
-        {
-            throw new NotImplementedException();
-        }
+		//public static List<EstudianteTesisEntidad> DevolverListaCSV()
+		//{
+		//    throw new NotImplementedException();
+		//}
 
-        
-    }
+
+	}
 
 }

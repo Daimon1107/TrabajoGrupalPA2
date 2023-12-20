@@ -11,128 +11,111 @@ namespace ArquitecturaDatos
     public static class FacultadDatos
     {
 
-        public static FacultadEntidad DevolverFacultadId(int id)
-        {
-            try
-            {
-                FacultadEntidad facultadEntidad = new FacultadEntidad();
-                using (TareaGrupalEntities contexto = new TareaGrupalEntities())
-                {
-                    var facultadEF = contexto.Facultad.FirstOrDefault(p => p.id == id);
+        public static FacultadEntidad DevolverFacultadId(int id) {
+            //try {
+            //    FacultadEntidad facultadEntidad = new FacultadEntidad();
+            //    using (TareaGrupalEntities contexto = new TareaGrupalEntities()) {
+            //        var facultadEF = contexto.Facultad.FirstOrDefault(p => p.id == id);
 
-                    facultadEntidad.Id = facultadEF.id;
-                    facultadEntidad.Nombre = facultadEF.nombre;
+            //        facultadEntidad.Id = facultadEF.id;
+            //        facultadEntidad.Nombre = facultadEF.nombre;
 
 
-                }
-                return facultadEntidad;
+            //    }
+            //    return facultadEntidad;
 
-            }
-            catch (Exception)
-            {
+            //} catch (Exception) {
 
-                throw;
-            }
-        
+            //    throw;
+            //}
+            throw new NotImplementedException();
+
+
         }
 
 
 
-        public static FacultadEntidad ActualizarFacultad(FacultadEntidad facultad)
-        {
-            try
-            {
-                Facultad facultadEF = new Facultad();
-                facultadEF.id = facultad.Id;
-                facultadEF.nombre = facultad.Nombre;
+        public static FacultadEntidad ActualizarFacultad(FacultadEntidad facultad) {
+            //try {
 
-                using (TareaGrupalEntities contexto = new TareaGrupalEntities())
-                { 
-                contexto.Facultad.AddOrUpdate(facultadEF);
-                    contexto.SaveChanges();
-                }
-                return facultad;
-            }
-            catch (Exception)
-            {
+            //    Facultad facultadEF = new Facultad();
+            //    facultadEF.id = facultad.Id;
+            //    facultadEF.nombre = facultad.Nombre;
 
-                throw;
-            }
+            //    using (TareaGrupalEntities contexto = new TareaGrupalEntities()) {
+            //        contexto.Facultad.AddOrUpdate(facultadEF);
+            //        contexto.SaveChanges();
+            //    }
+            //    return facultad;
+            //} catch (Exception) {
+
+            //    throw;
+            //}
+            throw new NotImplementedException();
         }
 
 
 
-        public static List<FacultadEntidad> DevolverListaFacultades()
-        {
-            try
-            {
-                List<FacultadEntidad> listaFacultades = new List<FacultadEntidad>();
-                using (TareaGrupalEntities contexto = new TareaGrupalEntities())
-                {
-                    var ms = contexto.Facultad.ToList();
-                    foreach (var item in ms)
-                    {
-                        listaFacultades.Add(new FacultadEntidad(item.id, item.nombre));
+        public static List<FacultadEntidad> DevolverListaFacultades() {
+            //try {
+            //    List<FacultadEntidad> listaFacultades = new List<FacultadEntidad>();
+            //    using (TareaGrupalEntities contexto = new TareaGrupalEntities()) {
+            //        var ms = contexto.Facultad.ToList();
+            //        foreach (var item in ms) {
+            //            listaFacultades.Add(new FacultadEntidad(item.id, item.nombre));
 
 
-                    }
-                }
+            //        }
+            //    }
 
-                return listaFacultades;
+            //    return listaFacultades;
 
-            }
-            catch (Exception)
-            {
+            //} catch (Exception) {
 
-                throw;
-            }
+            //    throw;
+            //}
+            throw new NotImplementedException();
         }
 
-        public static FacultadEntidad NuevaFacultad(FacultadEntidad facultad)
-        {
-            try
-            {
-                Facultad facultadEF = new Facultad();
-                facultadEF.id = facultad.Id;
-                facultadEF.nombre = facultad.Nombre;
+        public static FacultadEntidad NuevaFacultad(FacultadEntidad facultad) {
+            //try {
+            //    Facultad facultadEF = new Facultad();
+            //    facultadEF.id = facultad.Id;
+            //    facultadEF.nombre = facultad.Nombre;
 
-                using (TareaGrupalEntities contexto = new TareaGrupalEntities())
-                {
-                    contexto.Facultad.Add(facultadEF);
-                    contexto.SaveChanges();
-                }
+            //    using (TareaGrupalEntities contexto = new TareaGrupalEntities()) {
+            //        contexto.Facultad.Add(facultadEF);
+            //        contexto.SaveChanges();
+            //    }
 
-                facultad.Id = facultadEF.id;
-                return facultad;
+            //    facultad.Id = facultadEF.id;
+            //    return facultad;
 
-            }
-            catch (Exception)
-            {
+            //} catch (Exception) {
 
-                throw;
-            }
+            //    throw;
+            //}
+            throw new NotImplementedException();
+
         }
 
-        public static bool EliminarFacultadId(int id)
-        {
-            try
-            {
+        public static bool EliminarFacultadId(int id) {
+            //try {
 
-                using (TareaGrupalEntities contexto = new TareaGrupalEntities())
-                {
-                    Facultad facultadEF = contexto.Facultad.FirstOrDefault(p => p.id == id);
-                    contexto.Facultad.Remove(facultadEF);
-                    contexto.SaveChanges();
-                    return true;
-                
-                }
-                        }
-            catch (Exception)
-            {
-                return false;
-                throw;
-            }
+            //    using (TareaGrupalEntities contexto = new TareaGrupalEntities()) {
+            //        Facultad facultadEF = contexto.Facultad.FirstOrDefault(p => p.id == id);
+            //        contexto.Facultad.Remove(facultadEF);
+            //        contexto.SaveChanges();
+            //        return true;
+
+            //    }
+            //} catch (Exception) {
+            //    return false;
+            //    throw;
+            //}
+            throw new NotImplementedException();
+
         }
-    
+
     }
 }

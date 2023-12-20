@@ -16,7 +16,7 @@ namespace ArquitecturaPresentacion
     public partial class Form_Estudiante : Form
     {
 
-        EstudianteEntidad estudiante = new EstudianteEntidad();
+        EstudianteTesisEntidad estudiante = new EstudianteTesisEntidad();
         public Form_Estudiante()
         {
             InitializeComponent();
@@ -75,7 +75,7 @@ namespace ArquitecturaPresentacion
             estudiante.Tema = textBox_Tema.Text;
 
 
-            estudiante = EstudianteNegocio.GuardarEstudiante(estudiante);
+           // estudiante = EstudianteNegocio.GuardarEstudiante(estudiante);
 
             if (estudiante != null)
             {
@@ -99,7 +99,7 @@ namespace ArquitecturaPresentacion
 
         private void CargarValoresEstudianteId(int id)
         {
-            estudiante = EstudianteNegocio.DevolverEstudianteId(id);
+           // estudiante = EstudianteNegocio.DevolverEstudianteId(id);
             textBox_Id.Text = estudiante.Id.ToString();
             textBox_Nombre.Text = estudiante.Nombre;
             textBox_Apellido.Text = estudiante.Apellido;
@@ -141,7 +141,7 @@ namespace ArquitecturaPresentacion
 
         private void EncerarCampos()
         {
-            estudiante = new EstudianteEntidad();
+            estudiante = new EstudianteTesisEntidad();
             textBox_Id.Text = string.Empty;
             textBox_Nombre.Text = estudiante.Nombre;
             textBox_Apellido.Text = estudiante.Apellido;
@@ -200,12 +200,12 @@ namespace ArquitecturaPresentacion
 
         }
 
-        static List<EstudianteEntidad> LeerDatosCSV(string filepath)
+        static List<EstudianteTesisEntidad> LeerDatosCSV(string filepath)
         {
 
             Console.WriteLine();
 
-            var registros = new List<EstudianteEntidad>();
+            var registros = new List<EstudianteTesisEntidad>();
 
             if (File.Exists(filepath))
             {
@@ -229,10 +229,10 @@ namespace ArquitecturaPresentacion
                         int idDocente = Convert.ToInt32(parts[8]);
                         int idGenero = Convert.ToInt32(parts[9]);
 
-                        var registro = new EstudianteEntidad(id,cedula,nombre,
-                            apellido,fechaNacimiento,estadoCivil,idCarrera,tema,idDocente,idGenero);
+                       // var registro = new EstudianteTesisEntidad(id,cedula,nombre,
+                        //    apellido,fechaNacimiento,estadoCivil,idCarrera,tema,idDocente,idGenero);
 
-                        registros.Add(registro);
+                       // registros.Add(registro);
                     }
                 }
             }

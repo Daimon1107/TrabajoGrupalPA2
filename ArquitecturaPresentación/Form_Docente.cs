@@ -14,7 +14,7 @@ namespace ArquitecturaPresentacion
 {
     public partial class Form_Docente : Form
     {
-        DocenteEntidad docente = new DocenteEntidad();
+        CuentaDocenteEntidad docente = new CuentaDocenteEntidad();
         public Form_Docente()
         {
             InitializeComponent();
@@ -49,7 +49,7 @@ namespace ArquitecturaPresentacion
         docente.Apellido = textBox_Apellido.Text;   
             docente.Cedula = textBox_Cedula.Text;
             docente.FechaNacimiento = dateTimePicker_FechaNacimiento.Value;
-            docente.IdFacultad = Convert.ToInt32(comboBox_Facultad.SelectedValue);
+          //  docente.IdFacultad = Convert.ToInt32(comboBox_Facultad.SelectedValue);
 
 
             docente = DocenteNegocio.GuardarDocente(docente);
@@ -82,7 +82,7 @@ namespace ArquitecturaPresentacion
             textBox_Nombre.Text = docente.Nombre;
             textBox_Apellido.Text = docente.Apellido;
             dateTimePicker_FechaNacimiento.Value = docente.FechaNacimiento;
-            comboBox_Facultad.SelectedValue = docente.IdFacultad;
+          //  comboBox_Facultad.SelectedValue = docente.IdFacultad;
 
           }
 
@@ -121,12 +121,12 @@ namespace ArquitecturaPresentacion
 
         private void EncerarCampos()
         {
-            docente= new DocenteEntidad();
+            docente= new CuentaDocenteEntidad();
             textBox_Id.Text = string.Empty;
             textBox_Nombre.Text = docente.Nombre;
             textBox_Apellido.Text = docente.Apellido;
             textBox_Cedula.Text = docente.Cedula;
-            comboBox_Facultad.SelectedValue = docente.IdFacultad;
+          //  comboBox_Facultad.SelectedValue = docente.IdFacultad;
             dateTimePicker_FechaNacimiento.Value = DateTime.Now;
  
         }

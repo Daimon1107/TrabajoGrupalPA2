@@ -54,22 +54,22 @@
     <Compile Include="Carreras.cs">
       <DependentUpon>ModeloEF.tt</DependentUpon>
     </Compile>
-    <Compile Include="Docente.cs">
+    <Compile Include="CuentasDocente.cs">
       <DependentUpon>ModeloEF.tt</DependentUpon>
     </Compile>
     <Compile Include="DocenteDatos.cs" />
-    <Compile Include="Estudiante.cs">
-      <DependentUpon>ModeloEF.tt</DependentUpon>
-    </Compile>
     <Compile Include="EstudianteDatos.cs" />
-    <Compile Include="Facultad.cs">
+    <Compile Include="EstudiantesTesis.cs">
       <DependentUpon>ModeloEF.tt</DependentUpon>
     </Compile>
     <Compile Include="FacultadDatos.cs" />
-    <Compile Include="Genero.cs">
+    <Compile Include="Facultades.cs">
       <DependentUpon>ModeloEF.tt</DependentUpon>
     </Compile>
     <Compile Include="GéneroDatos.cs" />
+    <Compile Include="Géneros.cs">
+      <DependentUpon>ModeloEF.tt</DependentUpon>
+    </Compile>
     <Compile Include="InformeDatos.cs" />
     <Compile Include="Informes.cs">
       <DependentUpon>ModeloEF.tt</DependentUpon>
@@ -96,6 +96,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="sysdiagrams.cs">
+      <DependentUpon>ModeloEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsuarioDatos.cs" />
+    <Compile Include="Usuarios.cs">
       <DependentUpon>ModeloEF.tt</DependentUpon>
     </Compile>
   </ItemGroup>

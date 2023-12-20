@@ -12,29 +12,21 @@ namespace ArquitecturaDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Estudiante
+    public partial class Facultades
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Estudiante()
+        public Facultades()
         {
-            this.Informes = new HashSet<Informes>();
+            this.Carreras = new HashSet<Carreras>();
+            this.CuentasDocente = new HashSet<CuentasDocente>();
         }
     
         public int id { get; set; }
-        public string cedula { get; set; }
-        public string apellido { get; set; }
         public string nombre { get; set; }
-        public Nullable<System.DateTime> fecha_nacimiento { get; set; }
-        public string estado_civil { get; set; }
-        public Nullable<int> id_carrera { get; set; }
-        public string tema { get; set; }
-        public Nullable<int> id_docente { get; set; }
-        public Nullable<int> id_genero { get; set; }
     
-        public virtual Carreras Carreras { get; set; }
-        public virtual Docente Docente { get; set; }
-        public virtual Genero Genero { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Informes> Informes { get; set; }
+        public virtual ICollection<Carreras> Carreras { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CuentasDocente> CuentasDocente { get; set; }
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ArquitecturaLogicaNegocio {
     public class DocenteNegocio {
-        public static bool ComprobarSesiónVálida(DocenteEntidad docenteE) {
+        public static bool ComprobarSesiónVálida(CuentaDocenteEntidad docenteE) {
             docenteE = DocenteDatos.ComprobarSesiónVálida(docenteE);
 
             if(docenteE == null) {
@@ -19,7 +19,7 @@ namespace ArquitecturaLogicaNegocio {
             return true;
         }
 
-        public static DocenteEntidad GuardarDocente(DocenteEntidad docente)
+        public static CuentaDocenteEntidad GuardarDocente(CuentaDocenteEntidad docente)
         {
              if (docente.Id == 0)
             {
@@ -31,12 +31,12 @@ namespace ArquitecturaLogicaNegocio {
             return DocenteDatos.ActualizarDocente(docente);
         }
 
-        public static List<DocenteEntidad> DevolverListaDocentes()
+        public static List<CuentaDocenteEntidad> DevolverListaDocentes()
         {
             return DocenteDatos.DevolverListaDocentes();
         }
 
-        public static DocenteEntidad DevolverDocenteId(int id)
+        public static CuentaDocenteEntidad DevolverDocenteId(int id)
         {
             return DocenteDatos.DevolverDocenteID(id);
         }

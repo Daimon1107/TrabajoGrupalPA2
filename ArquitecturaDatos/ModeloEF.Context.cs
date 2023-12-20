@@ -26,11 +26,12 @@ namespace ArquitecturaDatos
         }
     
         public virtual DbSet<Carreras> Carreras { get; set; }
-        public virtual DbSet<Docente> Docente { get; set; }
-        public virtual DbSet<Estudiante> Estudiante { get; set; }
-        public virtual DbSet<Facultad> Facultad { get; set; }
-        public virtual DbSet<Genero> Genero { get; set; }
+        public virtual DbSet<CuentasDocente> CuentasDocente { get; set; }
+        public virtual DbSet<EstudiantesTesis> EstudiantesTesis { get; set; }
+        public virtual DbSet<Facultades> Facultades { get; set; }
+        public virtual DbSet<Géneros> Géneros { get; set; }
         public virtual DbSet<Informes> Informes { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Usuarios> Usuarios { get; set; }
     }
 }

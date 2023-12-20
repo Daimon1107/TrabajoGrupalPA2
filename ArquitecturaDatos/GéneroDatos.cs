@@ -10,31 +10,25 @@ namespace ArquitecturaDatos
 {
 	public static class GéneroDatos
 	{
-		public static List<GéneroEntidad> DevolverGéneros()
-		{
-			try
-			{
+		public static List<GéneroEntidad> DevolverGéneros() {
+			try {
 				List<GéneroEntidad> listaGéneros = new List<GéneroEntidad>();
-				List<Genero> listaEstudiantesLINQ = new List<Genero>();
-				using (TareaGrupalEntities contexto = new TareaGrupalEntities())
-				{
-					var resultado = from g in contexto.Genero
-									select g;
+				List<Géneros> listaEstudiantesLINQ = new List<Géneros>();
+				using (TareaGrupalEntities contexto = new TareaGrupalEntities()) {
+					var resultado = from g in contexto.Géneros
+                                    select g;
 
 					listaEstudiantesLINQ = resultado.ToList();
 				}
 
-				foreach (var item in listaEstudiantesLINQ)
-				{
+				foreach (var item in listaEstudiantesLINQ) {
 					listaGéneros.Add(new GéneroEntidad(item.id, item.nombre));
 				}
 
 				return listaGéneros;
 
 
-			}
-			catch (Exception)
-			{
+			} catch (Exception) {
 				throw;
 			}
 		}

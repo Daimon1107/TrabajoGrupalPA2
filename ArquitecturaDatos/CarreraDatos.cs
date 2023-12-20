@@ -71,10 +71,11 @@ namespace ArquitecturaDatos
 				List<CarreraEntidad> listaCarreras = new List<CarreraEntidad>();
 				using (TareaGrupalEntities contexto = new TareaGrupalEntities())
 				{
-					var ms = contexto.Carreras.Include("Facultad").ToList();
+					var ms = contexto.Carreras.ToList();
                     foreach (var item in ms)
                     {
-						listaCarreras.Add(new CarreraEntidad(item.id, item.nombre, (int) item.id_facultad));
+						listaCarreras.Add(
+							new CarreraEntidad(item.id, item.nombre, (int) item.id_facultad));
                     }
 
                 }
@@ -99,8 +100,6 @@ namespace ArquitecturaDatos
 					carreraEntidad.Id = carreraEF.id;
 					carreraEntidad.Nombre = carreraEF.nombre;
 					carreraEntidad.Id_Facultad = (int) carreraEF.id_facultad;
-					carreraEntidad.Facultad = carreraEF.Facultad.nombre;
-
 				}
 
 				return carreraEntidad;

@@ -19,6 +19,6 @@ namespace ArquitecturaDatos
         public Nullable<int> año { get; set; }
         public Nullable<int> id_estudiante { get; set; }
     
-        public virtual Estudiante Estudiante { get; set; }
+        public virtual EstudiantesTesis EstudiantesTesis { get; set; }
     }
 }

@@ -12,189 +12,160 @@ namespace ArquitecturaDatos
 {
 	public static class DocenteDatos
 	{
-        public static DocenteEntidad NuevoDocente(DocenteEntidad docente)
-        {
-			try
-			{
-                Docente docenteEF= new Docente();
-				docenteEF.id = docente.Id;
-				docenteEF.nombre = docente.Nombre;
-				docenteEF.apellido = docente.Apellido;
-				docenteEF.cedula = docente.Cedula;
-				docenteEF.fecha_naciemiento = docente.FechaNacimiento;
-				docenteEF.id_facultad = docente.IdFacultad;
+        public static CuentaDocenteEntidad NuevoDocente(CuentaDocenteEntidad docente) {
+            try {
+                CuentasDocente docenteEF = new CuentasDocente();
+                docenteEF.Usuarios.id = docente.Id;
+                docenteEF.Usuarios.nombre = docente.Nombre;
+                docenteEF.Usuarios.apellido = docente.Apellido;
+                docenteEF.Usuarios.cedula = docente.Cedula;
+                docenteEF.Usuarios.fecha_nacimiento = docente.FechaNacimiento;
+                docenteEF.id_facultad = docente.Id_Facultad;
 
 
-                using (TareaGrupalEntities contexto = new TareaGrupalEntities())
-                {
-                    contexto.Docente.Add(docenteEF);
+                using (TareaGrupalEntities contexto = new TareaGrupalEntities()) {
+                    contexto.CuentasDocente.Add(docenteEF);
                     contexto.SaveChanges();
                 }
 
-                docente.Id = docenteEF.id;
+                docente.Id = docenteEF.Usuarios.id;
                 return docente;
-            }
-			catch (Exception)
-			{
-
-				throw;
-			}
-        }
-
-
-        public static DocenteEntidad ActualizarDocente(DocenteEntidad docente)
-        {
-            try
-            {
-                Docente docenteEF= new Docente();
-                docenteEF.id = docente.Id;
-                docenteEF.nombre = docente.Nombre;
-                docenteEF.apellido = docente.Apellido;
-                docenteEF.cedula = docente.Cedula;
-                docenteEF.fecha_naciemiento = docente.FechaNacimiento;
-                docenteEF.id_facultad = docente.IdFacultad;
-
-                using (TareaGrupalEntities contexto = new TareaGrupalEntities())
-                {
-                    contexto.Docente.AddOrUpdate(docenteEF);
-                    contexto.SaveChanges();
-                }
-                return docente;
-            }
-            catch (Exception)
-            {
+            } catch (Exception) {
 
                 throw;
             }
         }
 
-        public static List<DocenteEntidad> DevolverListaDocentes()
-        {
-            try
-            {
-                List<DocenteEntidad> listaDocente = new List<DocenteEntidad>();
 
-                using (TareaGrupalEntities contexto = new TareaGrupalEntities())
-                {
-                    var ms = contexto.Docente
+        public static CuentaDocenteEntidad ActualizarDocente(CuentaDocenteEntidad docente) {
+            try {
+                CuentasDocente docenteEF = new CuentasDocente();
+                docenteEF.Usuarios.id = docente.Id;
+                docenteEF.Usuarios.nombre = docente.Nombre;
+                docenteEF.Usuarios.apellido = docente.Apellido;
+                docenteEF.Usuarios.cedula = docente.Cedula;
+                docenteEF.Usuarios.fecha_nacimiento= docente.FechaNacimiento;
+                docenteEF.id_facultad = docente.Id_Facultad;
+
+                using (TareaGrupalEntities contexto = new TareaGrupalEntities()) {
+                    contexto.CuentasDocente.AddOrUpdate(docenteEF);
+                    contexto.SaveChanges();
+                }
+                return docente;
+            } catch (Exception) {
+
+                throw;
+            }
+        }
+
+        public static List<CuentaDocenteEntidad> DevolverListaDocentes() {
+            try {
+                List<CuentaDocenteEntidad> listaDocente = new List<CuentaDocenteEntidad>();
+
+                using (TareaGrupalEntities contexto = new TareaGrupalEntities()) {
+                    var ms = contexto.CuentasDocente
                                      .Include("Facultad")
                                      .ToList();
 
-                    foreach (var item in ms)
-                    {
-                        listaDocente.Add(new DocenteEntidad(item.id, item.cedula, 
-                            item.nombre, item.apellido, 
-                           (DateTime) item.fecha_naciemiento, (int)item.id_facultad));
+                    foreach (var item in ms) {
+                        listaDocente.Add(new CuentaDocenteEntidad(item.id, (int) item.id_facultad,
+                            item.Facultades.nombre, (int) item.id_datos, item.Usuarios.cedula,
+                            item.Usuarios.nombre,
+                            item.Usuarios.apellido,
+                           (DateTime) item.Usuarios.fecha_nacimiento, (bool) item.Usuarios.rol, item.Usuarios.usuario, item.Usuarios.contraseña));
                     }
                 }
                 return listaDocente;
 
-            }
-            catch (Exception)
-            {
+            } catch (Exception) {
 
                 throw;
             }
         }
 
-        public static DocenteEntidad DevolverDocenteID(int id)
-        {
-            try
-            {
-                DocenteEntidad docenteEntidad = new DocenteEntidad();
-                using (TareaGrupalEntities contexto = new TareaGrupalEntities())
-                {
-                    var docenteEF = contexto.Docente
+        public static CuentaDocenteEntidad DevolverDocenteID(int id) {
+            try {
+                CuentaDocenteEntidad docenteEntidad = new CuentaDocenteEntidad();
+                using (TareaGrupalEntities contexto = new TareaGrupalEntities()) {
+                    var docenteEF = contexto.CuentasDocente
                                              .Include("Facultad")
                                              .FirstOrDefault(p => p.id == id);
-                    docenteEntidad.Id = docenteEF.id;
-                    docenteEntidad.Nombre = docenteEF.nombre;
-                    docenteEntidad.Apellido = docenteEF.apellido;
-                    docenteEntidad.Cedula = docenteEF.cedula;
-                    docenteEntidad.FechaNacimiento = (DateTime)docenteEF.fecha_naciemiento;
-                    docenteEntidad.IdFacultad= (int)docenteEF.id_facultad;
+                    docenteEntidad.Id = docenteEF.Usuarios.id;
+                    docenteEntidad.Nombre = docenteEF.Usuarios.nombre;
+                    docenteEntidad.Apellido = docenteEF.Usuarios.apellido;
+                    docenteEntidad.Cedula = docenteEF.Usuarios.cedula;
+                    docenteEntidad.FechaNacimiento = (DateTime) docenteEF.Usuarios.fecha_nacimiento;
+                    docenteEntidad.Id_Facultad = (int) docenteEF.id_facultad;
 
 
-                     }
+                }
 
                 return docenteEntidad;
-            }
-            catch (Exception)
-            {
+            } catch (Exception) {
 
                 throw;
             }
         }
 
-        public static bool EliminarDocenteId(int id)
-        {
-            try
-            {
-                using (TareaGrupalEntities contexto = new TareaGrupalEntities())
-                {
-                    Docente docenteEF = contexto.Docente
+        public static bool EliminarDocenteId(int id) {
+            try {
+                using (TareaGrupalEntities contexto = new TareaGrupalEntities()) {
+                    CuentasDocente docenteEF = contexto.CuentasDocente
                                                   .FirstOrDefault(p => p.id == id);
-                    contexto.Docente.Remove(docenteEF);
+                    contexto.CuentasDocente.Remove(docenteEF);
                     contexto.SaveChanges();
                     return true;
                 }
 
-            }
-            catch (Exception)
-            {
+            } catch (Exception) {
                 return false;
                 throw;
             }
         }
 
-        public static DocenteEntidad ComprobarSesiónVálida(DocenteEntidad docenteE) {
-			//try {
-			//	using (TareaGrupalEntities contexto = new TareaGrupalEntities()) {
-			//		var docente = contexto.Docente.FirstOrDefault(d => (d.usuario == docenteE.Usuario && d.contrasena == docenteE.Contraseña));
+        public static CuentaDocenteEntidad ComprobarSesiónVálida(CuentaDocenteEntidad docenteE) {
+            try {
+                using (TareaGrupalEntities contexto = new TareaGrupalEntities()) {
+                    var docente = contexto.CuentasDocente.FirstOrDefault(d => (d.Usuarios.usuario == docenteE.Usuario && d.Usuarios.contraseña == docenteE.Contraseña));
 
-			//		if(docente == null) {
-			//			return null;
-			//		}
+                    if (docente == null) {
+                        return null;
+                    }
 
-			//		docenteE.Id = docente.id;
+                    docenteE.Id = docente.id;
 
-			//		return docenteE;
-			//	}
-			//} catch (Exception) {
+                    return docenteE;
+                }
+            } catch (Exception) {
 
-			//	throw;
-			//}
-			return null;
+                throw;
+            }
+            return null;
         }
 
-  //      public static List<DocenteEntidad> DevolverListaDocente()
-		//{
-		//	try
-		//	{
-		//		List<DocenteEntidad> listaDocentes = new List<DocenteEntidad>();
-		//		List<Docente> listaEstudiantesLINQ = new List<Docente>();
-		//		using (TareaGrupalEntities contexto = new TareaGrupalEntities())
-		//		{
-		//			var resultado = from e in contexto.Docente
-		//							select e;
+        public static List<CuentaDocenteEntidad> DevolverListaDocente() {
+            try {
+                List<CuentaDocenteEntidad> listaDocentes = new List<CuentaDocenteEntidad>();
+                List<CuentasDocente> listaEstudiantesLINQ = new List<CuentasDocente>();
+                using (TareaGrupalEntities contexto = new TareaGrupalEntities()) {
+                    var resultado = from e in contexto.CuentasDocente
+                                    select e;
 
-		//			listaEstudiantesLINQ = resultado.ToList();
-		//		}
+                    listaEstudiantesLINQ = resultado.ToList();
+                }
 
-		//		//foreach (var item in listaEstudiantesLINQ)
-		//		//{
-		//		//	listaDocentes.Add(new DocenteEntidad(item.id, item.usuario));
-		//		//}
+                //foreach (var item in listaEstudiantesLINQ)
+                //{
+                //	listaDocentes.Add(new DocenteEntidad(item.id, item.usuario));
+                //}
 
-		//		return listaDocentes;
+                return listaDocentes;
 
 
-		//	}
-		//	catch (Exception)
-		//	{
-		//		throw;
-		//	}
-		//}
+            } catch (Exception) {
+                throw;
+            }
+        }
 
 
     }

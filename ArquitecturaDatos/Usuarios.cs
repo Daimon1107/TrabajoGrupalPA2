@@ -12,18 +12,24 @@ namespace ArquitecturaDatos
     using System;
     using System.Collections.Generic;
     
-    public partial class Genero
+    public partial class Usuarios
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Genero()
+        public Usuarios()
         {
-            this.Estudiante = new HashSet<Estudiante>();
+            this.CuentasDocente = new HashSet<CuentasDocente>();
         }
     
         public int id { get; set; }
+        public string cedula { get; set; }
         public string nombre { get; set; }
+        public string apellido { get; set; }
+        public Nullable<System.DateTime> fecha_nacimiento { get; set; }
+        public Nullable<bool> rol { get; set; }
+        public string usuario { get; set; }
+        public string contraseña { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Estudiante> Estudiante { get; set; }
+        public virtual ICollection<CuentasDocente> CuentasDocente { get; set; }
     }
 }

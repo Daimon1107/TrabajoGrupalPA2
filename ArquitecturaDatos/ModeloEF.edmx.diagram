@@ -5,19 +5,21 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="98b37ab973fa441c8559f57d2d0e074d" Name="Diagram1">
-        <EntityTypeShape EntityType="TareaGrupalModel.Carreras" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="TareaGrupalModel.Docente" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TareaGrupalModel.Estudiante" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TareaGrupalModel.Facultad" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TareaGrupalModel.Genero" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TareaGrupalModel.Informes" Width="1.5" PointX="7.5" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TareaGrupalModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="TareaGrupalModel.FK_Carreras_Facultad" ManuallyRouted="false" />
-        <AssociationConnector Association="TareaGrupalModel.FK_Estudiante_Carreras1" ManuallyRouted="false" />
-        <AssociationConnector Association="TareaGrupalModel.FK_Docente_Facultad" ManuallyRouted="false" />
-        <AssociationConnector Association="TareaGrupalModel.FK_Estudiante_Docente" ManuallyRouted="false" />
-        <AssociationConnector Association="TareaGrupalModel.FK_Estudiante_Genero" ManuallyRouted="false" />
-        <AssociationConnector Association="TareaGrupalModel.FK_Informes_Estudiante1" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TareaGrupalModel.Carreras" Width="1.5" PointX="3" PointY="8" />
+        <EntityTypeShape EntityType="TareaGrupalModel.CuentasDocente" Width="1.5" PointX="3" PointY="5" />
+        <EntityTypeShape EntityType="TareaGrupalModel.EstudiantesTesis" Width="1.5" PointX="5.25" PointY="5.375" />
+        <EntityTypeShape EntityType="TareaGrupalModel.Facultades" Width="1.5" PointX="0.75" PointY="5.25" />
+        <EntityTypeShape EntityType="TareaGrupalModel.Géneros" Width="1.5" PointX="3" PointY="1.75" />
+        <EntityTypeShape EntityType="TareaGrupalModel.Informes" Width="1.5" PointX="7.5" PointY="6.5" />
+        <EntityTypeShape EntityType="TareaGrupalModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="2.125" />
+        <EntityTypeShape EntityType="TareaGrupalModel.Usuarios" Width="1.5" PointX="0.75" PointY="0.75" />
+        <AssociationConnector Association="TareaGrupalModel.FK_Carreras_Facultad" />
+        <AssociationConnector Association="TareaGrupalModel.FK_Estudiante_Carreras1" />
+        <AssociationConnector Association="TareaGrupalModel.FK_Docentes_Facultades" />
+        <AssociationConnector Association="TareaGrupalModel.FK_Docentes_Usuarios" />
+        <AssociationConnector Association="TareaGrupalModel.FK_EstudiantesTesis_Docentes" />
+        <AssociationConnector Association="TareaGrupalModel.FK_Estudiante_Genero" />
+        <AssociationConnector Association="TareaGrupalModel.FK_Informes_Estudiante1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
