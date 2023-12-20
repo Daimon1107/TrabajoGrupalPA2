@@ -54,8 +54,8 @@ namespace ArquitecturaPresentacion
 
         private void button6_Click(object sender, EventArgs e)
         {
-            IngresoDatos docente = new IngresoDatos();
-            docente.Show();
+            IngresoDatos ingreso= new IngresoDatos();
+            ingreso.Show();
             this.Visible = false;
         }
     }
