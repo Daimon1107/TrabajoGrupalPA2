@@ -1,0 +1,603 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ProyectoFinalPAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Actividades">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombreAct" Type="nvarchar" MaxLength="100" />
+          <Property Name="fechaAct" Type="date" />
+          <Property Name="id_tesis" Type="int" />
+        </EntityType>
+        <EntityType Name="Carreras">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="100" />
+          <Property Name="id_facultad" Type="int" />
+        </EntityType>
+        <EntityType Name="CuentasDocente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_facultad" Type="int" />
+          <Property Name="id_datos" Type="int" />
+        </EntityType>
+        <EntityType Name="Estudiantes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cedula" Type="nvarchar" MaxLength="10" />
+          <Property Name="apellido" Type="nvarchar" MaxLength="60" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="60" />
+          <Property Name="fecha_nacimiento" Type="date" />
+          <Property Name="id_carrera" Type="int" />
+          <Property Name="id_genero" Type="int" />
+          <Property Name="foto" Type="image" />
+        </EntityType>
+        <EntityType Name="Facultades">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Géneros">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Maestro_Tesis">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_docente" Type="int" />
+          <Property Name="id_estudiante" Type="int" />
+          <Property Name="mesAP" Type="int" />
+          <Property Name="añoAP" Type="int" />
+          <Property Name="tema" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cedula" Type="nvarchar" MaxLength="50" />
+          <Property Name="nombre" Type="nvarchar" MaxLength="60" />
+          <Property Name="apellido" Type="nvarchar" MaxLength="60" />
+          <Property Name="fecha_nacimiento" Type="date" />
+          <Property Name="rol" Type="bit" />
+          <Property Name="usuario" Type="nvarchar" MaxLength="150" />
+          <Property Name="contraseña" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <Association Name="FK_Actividades_Maestro_Tesis">
+          <End Role="Maestro_Tesis" Type="Self.Maestro_Tesis" Multiplicity="0..1" />
+          <End Role="Actividades" Type="Self.Actividades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Maestro_Tesis">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Actividades">
+              <PropertyRef Name="id_tesis" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Carreras_Facultades">
+          <End Role="Facultades" Type="Self.Facultades" Multiplicity="0..1" />
+          <End Role="Carreras" Type="Self.Carreras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facultades">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Carreras">
+              <PropertyRef Name="id_facultad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CuentasDocente_Facultades">
+          <End Role="Facultades" Type="Self.Facultades" Multiplicity="0..1" />
+          <End Role="CuentasDocente" Type="Self.CuentasDocente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facultades">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CuentasDocente">
+              <PropertyRef Name="id_facultad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CuentasDocente_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="CuentasDocente" Type="Self.CuentasDocente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CuentasDocente">
+              <PropertyRef Name="id_datos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estudiantes_Carreras">
+          <End Role="Carreras" Type="Self.Carreras" Multiplicity="0..1" />
+          <End Role="Estudiantes" Type="Self.Estudiantes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carreras">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Estudiantes">
+              <PropertyRef Name="id_carrera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estudiantes_Géneros1">
+          <End Role="Géneros" Type="Self.Géneros" Multiplicity="0..1" />
+          <End Role="Estudiantes" Type="Self.Estudiantes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Géneros">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Estudiantes">
+              <PropertyRef Name="id_genero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Maestro_Tesis_CuentasDocente">
+          <End Role="CuentasDocente" Type="Self.CuentasDocente" Multiplicity="0..1" />
+          <End Role="Maestro_Tesis" Type="Self.Maestro_Tesis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CuentasDocente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Maestro_Tesis">
+              <PropertyRef Name="id_docente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Maestro_Tesis_Estudiantes">
+          <End Role="Estudiantes" Type="Self.Estudiantes" Multiplicity="0..1" />
+          <End Role="Maestro_Tesis" Type="Self.Maestro_Tesis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estudiantes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Maestro_Tesis">
+              <PropertyRef Name="id_estudiante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProyectoFinalPAModelStoreContainer">
+          <EntitySet Name="Actividades" EntityType="Self.Actividades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Carreras" EntityType="Self.Carreras" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CuentasDocente" EntityType="Self.CuentasDocente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estudiantes" EntityType="Self.Estudiantes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Facultades" EntityType="Self.Facultades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Géneros" EntityType="Self.Géneros" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Maestro_Tesis" EntityType="Self.Maestro_Tesis" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Actividades_Maestro_Tesis" Association="Self.FK_Actividades_Maestro_Tesis">
+            <End Role="Maestro_Tesis" EntitySet="Maestro_Tesis" />
+            <End Role="Actividades" EntitySet="Actividades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Carreras_Facultades" Association="Self.FK_Carreras_Facultades">
+            <End Role="Facultades" EntitySet="Facultades" />
+            <End Role="Carreras" EntitySet="Carreras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CuentasDocente_Facultades" Association="Self.FK_CuentasDocente_Facultades">
+            <End Role="Facultades" EntitySet="Facultades" />
+            <End Role="CuentasDocente" EntitySet="CuentasDocente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CuentasDocente_Usuarios" Association="Self.FK_CuentasDocente_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="CuentasDocente" EntitySet="CuentasDocente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estudiantes_Carreras" Association="Self.FK_Estudiantes_Carreras">
+            <End Role="Carreras" EntitySet="Carreras" />
+            <End Role="Estudiantes" EntitySet="Estudiantes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estudiantes_Géneros1" Association="Self.FK_Estudiantes_Géneros1">
+            <End Role="Géneros" EntitySet="Géneros" />
+            <End Role="Estudiantes" EntitySet="Estudiantes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Maestro_Tesis_CuentasDocente" Association="Self.FK_Maestro_Tesis_CuentasDocente">
+            <End Role="CuentasDocente" EntitySet="CuentasDocente" />
+            <End Role="Maestro_Tesis" EntitySet="Maestro_Tesis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Maestro_Tesis_Estudiantes" Association="Self.FK_Maestro_Tesis_Estudiantes">
+            <End Role="Estudiantes" EntitySet="Estudiantes" />
+            <End Role="Maestro_Tesis" EntitySet="Maestro_Tesis" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProyectoFinalPAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Actividades">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombreAct" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="fechaAct" Type="DateTime" Precision="0" />
+          <Property Name="id_tesis" Type="Int32" />
+          <NavigationProperty Name="Maestro_Tesis" Relationship="Self.FK_Actividades_Maestro_Tesis" FromRole="Actividades" ToRole="Maestro_Tesis" />
+        </EntityType>
+        <EntityType Name="Carreras">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="id_facultad" Type="Int32" />
+          <NavigationProperty Name="Facultades" Relationship="Self.FK_Carreras_Facultades" FromRole="Carreras" ToRole="Facultades" />
+          <NavigationProperty Name="Estudiantes" Relationship="Self.FK_Estudiantes_Carreras" FromRole="Carreras" ToRole="Estudiantes" />
+        </EntityType>
+        <EntityType Name="CuentasDocente">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_facultad" Type="Int32" />
+          <Property Name="id_datos" Type="Int32" />
+          <NavigationProperty Name="Facultades" Relationship="Self.FK_CuentasDocente_Facultades" FromRole="CuentasDocente" ToRole="Facultades" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK_CuentasDocente_Usuarios" FromRole="CuentasDocente" ToRole="Usuarios" />
+          <NavigationProperty Name="Maestro_Tesis" Relationship="Self.FK_Maestro_Tesis_CuentasDocente" FromRole="CuentasDocente" ToRole="Maestro_Tesis" />
+        </EntityType>
+        <EntityType Name="Estudiantes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cedula" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="apellido" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="nombre" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_nacimiento" Type="DateTime" Precision="0" />
+          <Property Name="id_carrera" Type="Int32" />
+          <Property Name="id_genero" Type="Int32" />
+          <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Carreras" Relationship="Self.FK_Estudiantes_Carreras" FromRole="Estudiantes" ToRole="Carreras" />
+          <NavigationProperty Name="Géneros" Relationship="Self.FK_Estudiantes_Géneros1" FromRole="Estudiantes" ToRole="Géneros" />
+          <NavigationProperty Name="Maestro_Tesis" Relationship="Self.FK_Maestro_Tesis_Estudiantes" FromRole="Estudiantes" ToRole="Maestro_Tesis" />
+        </EntityType>
+        <EntityType Name="Facultades">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Carreras" Relationship="Self.FK_Carreras_Facultades" FromRole="Facultades" ToRole="Carreras" />
+          <NavigationProperty Name="CuentasDocente" Relationship="Self.FK_CuentasDocente_Facultades" FromRole="Facultades" ToRole="CuentasDocente" />
+        </EntityType>
+        <EntityType Name="Géneros">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Estudiantes" Relationship="Self.FK_Estudiantes_Géneros1" FromRole="Géneros" ToRole="Estudiantes" />
+        </EntityType>
+        <EntityType Name="Maestro_Tesis">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_docente" Type="Int32" />
+          <Property Name="id_estudiante" Type="Int32" />
+          <Property Name="mesAP" Type="Int32" />
+          <Property Name="añoAP" Type="Int32" />
+          <Property Name="tema" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Actividades" Relationship="Self.FK_Actividades_Maestro_Tesis" FromRole="Maestro_Tesis" ToRole="Actividades" />
+          <NavigationProperty Name="CuentasDocente" Relationship="Self.FK_Maestro_Tesis_CuentasDocente" FromRole="Maestro_Tesis" ToRole="CuentasDocente" />
+          <NavigationProperty Name="Estudiantes" Relationship="Self.FK_Maestro_Tesis_Estudiantes" FromRole="Maestro_Tesis" ToRole="Estudiantes" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cedula" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="nombre" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="apellido" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="fecha_nacimiento" Type="DateTime" Precision="0" />
+          <Property Name="rol" Type="Boolean" />
+          <Property Name="usuario" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="contraseña" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CuentasDocente" Relationship="Self.FK_CuentasDocente_Usuarios" FromRole="Usuarios" ToRole="CuentasDocente" />
+        </EntityType>
+        <Association Name="FK_Actividades_Maestro_Tesis">
+          <End Role="Maestro_Tesis" Type="Self.Maestro_Tesis" Multiplicity="0..1" />
+          <End Role="Actividades" Type="Self.Actividades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Maestro_Tesis">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Actividades">
+              <PropertyRef Name="id_tesis" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Carreras_Facultades">
+          <End Role="Facultades" Type="Self.Facultades" Multiplicity="0..1" />
+          <End Role="Carreras" Type="Self.Carreras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facultades">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Carreras">
+              <PropertyRef Name="id_facultad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estudiantes_Carreras">
+          <End Role="Carreras" Type="Self.Carreras" Multiplicity="0..1" />
+          <End Role="Estudiantes" Type="Self.Estudiantes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Carreras">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Estudiantes">
+              <PropertyRef Name="id_carrera" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CuentasDocente_Facultades">
+          <End Role="Facultades" Type="Self.Facultades" Multiplicity="0..1" />
+          <End Role="CuentasDocente" Type="Self.CuentasDocente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Facultades">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CuentasDocente">
+              <PropertyRef Name="id_facultad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CuentasDocente_Usuarios">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="CuentasDocente" Type="Self.CuentasDocente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CuentasDocente">
+              <PropertyRef Name="id_datos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Maestro_Tesis_CuentasDocente">
+          <End Role="CuentasDocente" Type="Self.CuentasDocente" Multiplicity="0..1" />
+          <End Role="Maestro_Tesis" Type="Self.Maestro_Tesis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CuentasDocente">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Maestro_Tesis">
+              <PropertyRef Name="id_docente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estudiantes_Géneros1">
+          <End Role="Géneros" Type="Self.Géneros" Multiplicity="0..1" />
+          <End Role="Estudiantes" Type="Self.Estudiantes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Géneros">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Estudiantes">
+              <PropertyRef Name="id_genero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Maestro_Tesis_Estudiantes">
+          <End Role="Estudiantes" Type="Self.Estudiantes" Multiplicity="0..1" />
+          <End Role="Maestro_Tesis" Type="Self.Maestro_Tesis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estudiantes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Maestro_Tesis">
+              <PropertyRef Name="id_estudiante" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProyectoFinalPAEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Actividades" EntityType="Self.Actividades" />
+          <EntitySet Name="Carreras" EntityType="Self.Carreras" />
+          <EntitySet Name="CuentasDocente" EntityType="Self.CuentasDocente" />
+          <EntitySet Name="Estudiantes" EntityType="Self.Estudiantes" />
+          <EntitySet Name="Facultades" EntityType="Self.Facultades" />
+          <EntitySet Name="Géneros" EntityType="Self.Géneros" />
+          <EntitySet Name="Maestro_Tesis" EntityType="Self.Maestro_Tesis" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <AssociationSet Name="FK_Actividades_Maestro_Tesis" Association="Self.FK_Actividades_Maestro_Tesis">
+            <End Role="Maestro_Tesis" EntitySet="Maestro_Tesis" />
+            <End Role="Actividades" EntitySet="Actividades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Carreras_Facultades" Association="Self.FK_Carreras_Facultades">
+            <End Role="Facultades" EntitySet="Facultades" />
+            <End Role="Carreras" EntitySet="Carreras" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estudiantes_Carreras" Association="Self.FK_Estudiantes_Carreras">
+            <End Role="Carreras" EntitySet="Carreras" />
+            <End Role="Estudiantes" EntitySet="Estudiantes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CuentasDocente_Facultades" Association="Self.FK_CuentasDocente_Facultades">
+            <End Role="Facultades" EntitySet="Facultades" />
+            <End Role="CuentasDocente" EntitySet="CuentasDocente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CuentasDocente_Usuarios" Association="Self.FK_CuentasDocente_Usuarios">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="CuentasDocente" EntitySet="CuentasDocente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Maestro_Tesis_CuentasDocente" Association="Self.FK_Maestro_Tesis_CuentasDocente">
+            <End Role="CuentasDocente" EntitySet="CuentasDocente" />
+            <End Role="Maestro_Tesis" EntitySet="Maestro_Tesis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estudiantes_Géneros1" Association="Self.FK_Estudiantes_Géneros1">
+            <End Role="Géneros" EntitySet="Géneros" />
+            <End Role="Estudiantes" EntitySet="Estudiantes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Maestro_Tesis_Estudiantes" Association="Self.FK_Maestro_Tesis_Estudiantes">
+            <End Role="Estudiantes" EntitySet="Estudiantes" />
+            <End Role="Maestro_Tesis" EntitySet="Maestro_Tesis" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProyectoFinalPAModelStoreContainer" CdmEntityContainer="ProyectoFinalPAEntities">
+          <EntitySetMapping Name="Actividades">
+            <EntityTypeMapping TypeName="ProyectoFinalPAModel.Actividades">
+              <MappingFragment StoreEntitySet="Actividades">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombreAct" ColumnName="nombreAct" />
+                <ScalarProperty Name="fechaAct" ColumnName="fechaAct" />
+                <ScalarProperty Name="id_tesis" ColumnName="id_tesis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Carreras">
+            <EntityTypeMapping TypeName="ProyectoFinalPAModel.Carreras">
+              <MappingFragment StoreEntitySet="Carreras">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id_facultad" ColumnName="id_facultad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CuentasDocente">
+            <EntityTypeMapping TypeName="ProyectoFinalPAModel.CuentasDocente">
+              <MappingFragment StoreEntitySet="CuentasDocente">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_facultad" ColumnName="id_facultad" />
+                <ScalarProperty Name="id_datos" ColumnName="id_datos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estudiantes">
+            <EntityTypeMapping TypeName="ProyectoFinalPAModel.Estudiantes">
+              <MappingFragment StoreEntitySet="Estudiantes">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="id_carrera" ColumnName="id_carrera" />
+                <ScalarProperty Name="id_genero" ColumnName="id_genero" />
+                <ScalarProperty Name="foto" ColumnName="foto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Facultades">
+            <EntityTypeMapping TypeName="ProyectoFinalPAModel.Facultades">
+              <MappingFragment StoreEntitySet="Facultades">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Géneros">
+            <EntityTypeMapping TypeName="ProyectoFinalPAModel.Géneros">
+              <MappingFragment StoreEntitySet="Géneros">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Maestro_Tesis">
+            <EntityTypeMapping TypeName="ProyectoFinalPAModel.Maestro_Tesis">
+              <MappingFragment StoreEntitySet="Maestro_Tesis">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_docente" ColumnName="id_docente" />
+                <ScalarProperty Name="id_estudiante" ColumnName="id_estudiante" />
+                <ScalarProperty Name="mesAP" ColumnName="mesAP" />
+                <ScalarProperty Name="añoAP" ColumnName="añoAP" />
+                <ScalarProperty Name="tema" ColumnName="tema" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ProyectoFinalPAModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="ProyectoFinalPAModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="rol" ColumnName="rol" />
+                <ScalarProperty Name="usuario" ColumnName="usuario" />
+                <ScalarProperty Name="contraseña" ColumnName="contraseña" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

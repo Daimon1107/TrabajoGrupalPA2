@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,7 +15,7 @@ namespace ArquitecturaPresentacion
 {
     public partial class Form_Login : Form
     {
-        DocenteEntidad docente = new DocenteEntidad();
+        UsuarioEntidad usuario = new UsuarioEntidad();
 
         public Form_Login()
         {
@@ -38,20 +39,37 @@ namespace ArquitecturaPresentacion
         }
 
         private void IniciarSesión() {
-            docente.Usuario = textBox_Usuario.Text;
-            docente.Contraseña = textBox_Contraseña.Text;
-            if (ValidarInicioSesion()) {
-                Form_Búsqueda búsqueda = new Form_Búsqueda(docente.Id);
-                búsqueda.Show();
-                this.Visible = false;
+           usuario.Usuario = txt_Usuario.Text;
+           usuario.Contraseña = txt_Contraseña.Text;
+           usuario = UsuarioNegocio.DevolverUsuarioContraseña(usuario);
 
+            if(usuario == null) {
+                MessageBox.Show("El usuario no existe", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            } else {
+                if (usuario.Rol) {
+
+                } else {
+
+                }
+
+              //  Form_Búsqueda búsqueda = new Form_Búsqueda(CuentasDocente.Id);
+               // búsqueda.Show();
+                this.Visible = false;
             }
+
+
+
+        }
+
+        private void ComprobarUsuario() {
+            
 
         }
 
         private bool ValidarInicioSesion()
         {
-            return DocenteNegocio.ComprobarSesiónVálida(docente);
+            return true;
+           // return DocenteNegocio.ComprobarSesiónVálida(CuentasDocente);
         }
 
         private void panel2_Paint(object sender, PaintEventArgs e)
@@ -66,39 +84,39 @@ namespace ArquitecturaPresentacion
 
         private void textBox_Usuario_Enter(object sender, EventArgs e)
         {
-            if (textBox_Usuario.Text == "USUARIO:")
+            if (txt_Usuario.Text == "USUARIO:")
             {
-                textBox_Usuario.Text = "";
-                textBox_Usuario.ForeColor = Color.LightGray;
+                txt_Usuario.Text = "";
+                txt_Usuario.ForeColor = Color.LightGray;
             }
         }
 
         private void textBox_Usuario_Leave(object sender, EventArgs e)
         {
-            if (textBox_Usuario.Text == "")
+            if (txt_Usuario.Text == "")
             {
-                textBox_Usuario.Text = "USUARIO:";
-                textBox_Usuario.ForeColor = Color.DimGray;
+                txt_Usuario.Text = "USUARIO:";
+                txt_Usuario.ForeColor = Color.DimGray;
             }
         }
 
         private void textBox_Contraseña_Enter(object sender, EventArgs e)
         {
-            if (textBox_Contraseña.Text == "CONTRASEÑA:") {
-                textBox_Contraseña.Text = "";
-                textBox_Contraseña.ForeColor = Color.Red;
-                textBox_Contraseña.UseSystemPasswordChar = true;
+            if (txt_Contraseña.Text == "CONTRASEÑA:") {
+                txt_Contraseña.Text = "";
+                txt_Contraseña.ForeColor = Color.Red;
+                txt_Contraseña.UseSystemPasswordChar = true;
 
             }
         }
 
         private void textBox_Contraseña_Leave(object sender, EventArgs e)
         {
-            if (textBox_Contraseña.Text == "")
+            if (txt_Contraseña.Text == "")
             {
-                textBox_Contraseña.Text = "CONTRASEÑA:";
-                textBox_Contraseña.ForeColor = Color.DimGray;
-                textBox_Contraseña.UseSystemPasswordChar = false;
+                txt_Contraseña.Text = "CONTRASEÑA:";
+                txt_Contraseña.ForeColor = Color.DimGray;
+                txt_Contraseña.UseSystemPasswordChar = false;
 
             }
         }
@@ -127,8 +145,8 @@ namespace ArquitecturaPresentacion
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Form_Docente docente= new Form_Docente();
-            docente.Show();
+            Form_Docente CuentasDocente= new Form_Docente();
+            CuentasDocente.Show();
             this.Visible = false;
         }
 

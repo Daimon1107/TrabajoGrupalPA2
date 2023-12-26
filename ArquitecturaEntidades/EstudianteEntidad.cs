@@ -8,35 +8,28 @@ namespace ArquitecturaEntidades
 {
 	public class EstudianteEntidad
 	{
-        public EstudianteEntidad()
-        {
+        public int Id { get; set; }
+        public string Cédula { get; set; }
+        public string Apellido { get; set; }
+        public string Nombre { get; set; }
+        public DateTime FechaNacimiento { get; set; }
+        public CarreraEntidad Carrera { get; set; }
+        public GéneroEntidad Género { get; set; }
+        public byte[] Foto { get; set; }
+        public EstudianteEntidad() {
         }
 
-        public EstudianteEntidad(int id, string cedula, string nombre, string apellido, DateTime fechaNacimiento, char estadoCivil, int idCarrera, string tema, int idDocente, int idGenero)
+        public EstudianteEntidad(int id, string cédula, string apellido, string nombre, DateTime fechaNacimiento, CarreraEntidad carrera, GéneroEntidad género, byte[] foto)
         {
             Id = id;
-            Cedula = cedula;
-            Nombre = nombre;
+            Cédula = cédula;
             Apellido = apellido;
+            Nombre = nombre;
             FechaNacimiento = fechaNacimiento;
-            EstadoCivil = estadoCivil;
-            IdCarrera = idCarrera;
-            Tema = tema;
-            IdDocente = idDocente;
-            IdGenero = idGenero;
+            Carrera = carrera;
+            Género = género;
+            Foto = foto;
         }
-
-        public int Id { get; set; }
-        public string Cedula{ get; set; }
-        public string Nombre { get; set; }
-        public string Apellido{ get; set; }
-        public DateTime FechaNacimiento { get; set; }
-        public char EstadoCivil { get; set; }
-        public int  IdCarrera{ get; set; }
-        public string Tema { get; set; }
-        public int IdDocente { get; set; }
-        public int IdGenero { get; set; }
-
     }
 
 }

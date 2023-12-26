@@ -16,6 +16,8 @@ namespace ArquitecturaPresentacion
     public partial class Form_Búsqueda : Form
     {
         private int id_Docente;
+        FiltradorBuilderEntidad filtroBuilder = new FiltradorBuilderEntidad();
+
         public Form_Búsqueda(int id)
         {
             InitializeComponent();
@@ -52,9 +54,9 @@ namespace ArquitecturaPresentacion
             dataGridView_Estudiante.DataSource = EstudianteNegocio.DevolverListaEstudiantes();
         }
 
-        //private void CargarListadoEstudiante(FiltradorBuilderEntidad filtro) {
-        //    dataGridView_Estudiante.DataSource = EstudianteNegocio.DevolverListaEstudiantes(filtro);
-        //}
+        private void CargarListadoEstudiante(FiltradorBuilderEntidad filtro) {
+           dataGridView_Estudiante.DataSource = EstudianteNegocio.DevolverListaEstudiantes(filtro);
+        }
 
         private void dataGridView_Estudiante_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -71,133 +73,37 @@ namespace ArquitecturaPresentacion
 
         }
 
-        private void checkBox_Carrera_CheckedChanged(object sender, EventArgs e) {
-            if (checkBox_Carrera.Checked) {
 
-            } else {
-
-            }
-        }
-
-        private void checkBox_Nombre_CheckedChanged(object sender, EventArgs e) {
-            if (checkBox_Nombre.Checked) {
-                txt_Nombre.ReadOnly = false; 
-            } else {
-                txt_Nombre.ReadOnly = true;
-            }
-        }
 
         private void txt_Apellido_TextChanged(object sender, EventArgs e) {
-
-        }
-
-        private void checkBox_Apellido_CheckedChanged(object sender, EventArgs e) {
-            if (checkBox_Apellido.Checked) {
-                txt_Apellido.ReadOnly = false;
+            if (!string.IsNullOrEmpty(txt_Apellido.Text)) {
+                filtroBuilder.AñadirApellido(txt_Apellido.Text);
             } else {
-                txt_Apellido.ReadOnly = true;
+                filtroBuilder.LimpiarParámetro("apellido");
             }
+            CargarListadoEstudiante(filtroBuilder);
         }
 
-        private void checkBox_Cédula_CheckedChanged(object sender, EventArgs e) {
-            if (checkBox_Cédula.Checked) {
-                txt_Cédula.ReadOnly = false;
-            } else {
-                txt_Cédula.ReadOnly = true;
-            }
-        }
-
-        private void checkBox_Género_CheckedChanged(object sender, EventArgs e) {
-            if (checkBox_Nombre.Checked) {
-
-            } else {
-
-            }
-        }
 
         private void txt_AñoAP_TextChanged(object sender, EventArgs e) {
-
-        }
-
-        private void checkBox_AP_CheckedChanged(object sender, EventArgs e) {
-            if (checkBox_AñoAP.Checked) {
-                txt_AñoAP.ReadOnly = false;
+            if (!string.IsNullOrEmpty(txt_AñoAP.Text)) {
+                filtroBuilder.AñadirAñoAP(txt_AñoAP.Text);
             } else {
-                txt_AñoAP.ReadOnly = true;
+                filtroBuilder.LimpiarParámetro("añoAP");
             }
-        }
-
-        private void checkBox_MesAP_CheckedChanged(object sender, EventArgs e) {
-            if (checkBox_MesAP.Checked) {
-                txt_MesAP.ReadOnly = false;
-            } else {
-                txt_MesAP.ReadOnly = true;
-            }
-        }
-
-        private void Filtrar()
-        {
-
-            FiltradorBuilderEntidad filtroBuilder = new FiltradorBuilderEntidad();
-            filtroBuilder.AñadirIdDocente(id_Docente.ToString());
-
-            if (VerificarFiltros())
-            {
-
-                if (checkBox_Cédula.Checked)
-                {
-                    filtroBuilder.AñadirCédula(txt_Cédula.Text);
-                }
-                if (checkBox_Apellido.Checked)
-                {
-                    filtroBuilder.AñadirApellido(txt_Apellido.Text);
-                }
-                if (checkBox_Nombre.Checked)
-                {
-                    filtroBuilder.AñadirNombre(txt_Nombre.Text);
-                }
-                if (checkBox_Carrera.Checked)
-                {
-                    filtroBuilder.AñadirCarrera(combo_Carrera.SelectedValue.ToString());
-                }
-                if (checkBox_Género.Checked)
-                {
-                    filtroBuilder.AñadirGénero(combo_Género.SelectedValue.ToString());
-                }
-                if (checkBox_AñoAP.Checked)
-                {
-                    filtroBuilder.AñadirAñoAP(txt_AñoAP.Text);
-                }
-                if (checkBox_MesAP.Checked)
-                {
-                    filtroBuilder.AñadirMesAP(txt_MesAP.Text);
-                }
-            }
-
-           // CargarListadoEstudiante(filtroBuilder);
-        }
-
-        private bool VerificarFiltros()
-        {
-            return checkBox_Cédula.Checked || checkBox_Apellido.Checked
-                || checkBox_Nombre.Checked || checkBox_Carrera.Checked
-                || checkBox_Género.Checked || checkBox_AñoAP.Checked
-                || checkBox_MesAP.Checked;
+            CargarListadoEstudiante(filtroBuilder);
         }
 
         private void btn_QuitarF_Click(object sender, EventArgs e) {
-            checkBox_Cédula.Checked = false;
-            checkBox_Apellido.Checked = false;
-            checkBox_Nombre.Checked = false;
-            checkBox_Carrera.Checked = false;
-            checkBox_Género.Checked = false;
-            checkBox_AñoAP.Checked = false;
-            checkBox_MesAP.Checked = false;
+            txt_Cédula.Text = string.Empty;
+            txt_Apellido.Text = string.Empty;
+            txt_Nombre.Text = string.Empty;
+            txt_AñoAP.Text = string.Empty;
+            txt_MesAP.Text = string.Empty;
+            combo_Carrera.Text = "Seleccione una carrera";
+            combo_Género.Text = "Seleccione un género";
+            filtroBuilder = new FiltradorBuilderEntidad();
             CargarListadoEstudiante();
-        }
-
-        private void btn_Filtrar_Click(object sender, EventArgs e) {
-            Filtrar();
         }
 
         private void label10_Click(object sender, EventArgs e)
@@ -207,7 +113,12 @@ namespace ArquitecturaPresentacion
 
         private void txt_Nombre_TextChanged(object sender, EventArgs e)
         {
-
+            if (!string.IsNullOrEmpty(txt_Nombre.Text)) {
+                filtroBuilder.AñadirNombre(txt_Nombre.Text);
+            } else {
+                filtroBuilder.LimpiarParámetro("nombre");
+            }
+            CargarListadoEstudiante(filtroBuilder);
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -255,16 +166,16 @@ namespace ArquitecturaPresentacion
             }
 
             // Verificar que el número esté en el rango del 1 al 12
-            if (!string.IsNullOrEmpty(checkBox_MesAP.Text) && int.TryParse(checkBox_MesAP.Text, out int number))
-            {
-                if (number < 1 || number > 12)
-                {
-                    // El número está fuera del rango, puedes mostrar un mensaje o realizar alguna acción aquí
-                    // Por ejemplo, mostrar un mensaje de error
-                    MessageBox.Show("Por favor, ingresa un número del 1 al 12.");
-                    checkBox_MesAP.Text = ""; // Limpiar el TextBox si el número está fuera del rango
-                }
-            }
+            //if (!string.IsNullOrEmpty(checkBox_MesAP.Text) && int.TryParse(checkBox_MesAP.Text, out int number))
+            //{
+            //    if (number < 1 || number > 12)
+            //    {
+            //        // El número está fuera del rango, puedes mostrar un mensaje o realizar alguna acción aquí
+            //        // Por ejemplo, mostrar un mensaje de error
+            //        MessageBox.Show("Por favor, ingresa un número del 1 al 12.");
+            //        checkBox_MesAP.Text = ""; // Limpiar el TextBox si el número está fuera del rango
+            //    }
+            //}
 
         }
 
@@ -272,8 +183,27 @@ namespace ArquitecturaPresentacion
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
-                e.Handled = true; // Cancelar el carácter ingresado si no es un número
+                e.Handled = true;
             }
+        }
+
+        private void txt_Cédula_TextChanged(object sender, EventArgs e) {
+            if (!string.IsNullOrEmpty(txt_Cédula.Text)) {
+                filtroBuilder.AñadirCédula(txt_Cédula.Text);
+            } else {
+                filtroBuilder.LimpiarParámetro("cedula");
+            }
+            CargarListadoEstudiante(filtroBuilder);
+        }
+
+        private void txt_MesAP_TextChanged(object sender, EventArgs e) {
+            if (!string.IsNullOrEmpty(txt_MesAP.Text)) {
+                filtroBuilder.AñadirMesAP(txt_MesAP.Text);
+            } else {
+                filtroBuilder.LimpiarParámetro("mesAP");
+            }
+            CargarListadoEstudiante(filtroBuilder);
+
         }
     }
 }

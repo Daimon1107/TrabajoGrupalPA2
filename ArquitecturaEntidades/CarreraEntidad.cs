@@ -8,23 +8,19 @@ namespace ArquitecturaEntidades
 {
 	public class CarreraEntidad
 	{
-        private int? id_facultad;
-
         public int Id { get; set; }
         public string Nombre { get; set; }
-        public int Id_Facultad{ get; set; }
-        public string Facultad { get; set; }
-
-        public CarreraEntidad(int id, string nombre, int id_Facultad)
-        {
-            Id = id;
-            Nombre = nombre;
-            Id_Facultad = id_Facultad;
-        }
-
+        public FacultadEntidad Facultad { get; set; }
 
         public CarreraEntidad()
         {
+        }
+
+        public CarreraEntidad(int id, string nombre, FacultadEntidad facultad)
+        {
+            Id = id;
+            Nombre = nombre;
+            Facultad = facultad;
         }
     }
 }

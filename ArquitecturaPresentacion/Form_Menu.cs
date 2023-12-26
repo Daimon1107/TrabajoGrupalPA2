@@ -26,8 +26,8 @@ namespace ArquitecturaPresentacion
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Form_Estudiante estudiante= new Form_Estudiante();
-            estudiante.Show();
+            Form_Estudiante Estudiantes= new Form_Estudiante();
+            Estudiantes.Show();
             this.Visible = false;
         }
 
@@ -47,8 +47,8 @@ namespace ArquitecturaPresentacion
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Form_Docente docente= new Form_Docente();
-            docente.Show();
+            Form_Docente CuentasDocente= new Form_Docente();
+            CuentasDocente.Show();
             this.Visible = false;
         }
     }

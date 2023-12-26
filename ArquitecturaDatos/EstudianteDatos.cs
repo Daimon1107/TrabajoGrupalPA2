@@ -13,31 +13,29 @@ namespace ArquitecturaDatos
 {
 	public static class EstudianteDatos
 	{
-		public static EstudianteEntidad NuevoEstudiante(EstudianteEntidad estudiante)
+		public static EstudianteEntidad NuevoEstudiante(EstudianteEntidad estudianteE)
 		{
 			try
 			{
-				Estudiante estudianteEF = new Estudiante();
-				estudianteEF.id = estudiante.Id;
-				estudianteEF.nombre = estudiante.Nombre;
-				estudianteEF.apellido = estudiante.Apellido;
-				estudianteEF.cedula = estudiante.Cedula;
-				estudianteEF.fecha_nacimiento = estudiante.FechaNacimiento;
-				estudianteEF.estado_civil = estudiante.EstadoCivil.ToString();
-				estudianteEF.id_carrera = estudiante.IdCarrera;
-				estudianteEF.tema = estudiante.Tema;
-				estudianteEF.id_docente = estudiante.IdDocente;
-				estudianteEF.id_genero = estudiante.IdGenero;
+				Estudiantes estudianteEF = new Estudiantes();
+				estudianteEF.id = estudianteE.Id;
+				estudianteEF.cedula = estudianteE.Cédula;
+				estudianteEF.apellido = estudianteE.Apellido;
+				estudianteEF.nombre = estudianteE.Nombre;
+				estudianteEF.fecha_nacimiento = estudianteE.FechaNacimiento;
+				estudianteEF.id_carrera = estudianteE.Carrera.Id;
+				estudianteEF.id_genero = estudianteE.Género.Id;
+				estudianteEF.foto = estudianteE.Foto;
 
-	
-				using (TareaGrupalEntities contexto = new TareaGrupalEntities())
+
+				using (ProyectoFinalPAEntities contexto = new ProyectoFinalPAEntities())
 				{
-					contexto.Estudiante.Add(estudianteEF);
+					contexto.Estudiantes.Add(estudianteEF);
 					contexto.SaveChanges();
 				}
 
-				estudiante.Id = estudianteEF.id;
-				return estudiante;
+				estudianteE.Id = estudianteEF.id;
+				return estudianteE;
 			}
 
 
@@ -48,67 +46,70 @@ namespace ArquitecturaDatos
 			}
 		}
 
-        public static EstudianteEntidad NuevoEstudianteCSV(EstudianteEntidad estudiante)
+		public static EstudianteEntidad NuevoEstudianteCSV(EstudianteEntidad Estudiantes)
         {
-            throw new NotImplementedException();
+			try {
+				return null;
+			} catch (Exception) {
+
+				throw;
+			}
         }
 
-        public static EstudianteEntidad ActualizarEstudiante(EstudianteEntidad estudiante)
+		public static EstudianteEntidad ActualizarEstudiante(EstudianteEntidad estudianteE)
 		{
 
 			try
 			{
 
-				Estudiante estudianteEF = new Estudiante();
-                estudianteEF.id = estudiante.Id;
-                estudianteEF.nombre = estudiante.Nombre;
-                estudianteEF.apellido = estudiante.Apellido;
-                estudianteEF.cedula = estudiante.Cedula;
-                estudianteEF.fecha_nacimiento = estudiante.FechaNacimiento;
-                estudianteEF.estado_civil = estudiante.EstadoCivil.ToString();
-                estudianteEF.id_carrera = estudiante.IdCarrera;
-                estudianteEF.tema = estudiante.Tema;
-                estudianteEF.id_docente = estudiante.IdDocente;
-                estudianteEF.id_genero = estudiante.IdGenero;
+                Estudiantes estudianteEF = new Estudiantes();
+                estudianteEF.id = estudianteE.Id;
+                estudianteEF.cedula = estudianteE.Cédula;
+                estudianteEF.apellido = estudianteE.Apellido;
+                estudianteEF.nombre = estudianteE.Nombre;
+                estudianteEF.fecha_nacimiento = estudianteE.FechaNacimiento;
+                estudianteEF.id_carrera = estudianteE.Carrera.Id;
+                estudianteEF.id_genero = estudianteE.Género.Id;
+                estudianteEF.foto = estudianteE.Foto;
 
-                using (TareaGrupalEntities contexto = new TareaGrupalEntities())
+                using (ProyectoFinalPAEntities contexto = new ProyectoFinalPAEntities())
 				{
-					contexto.Estudiante.AddOrUpdate(estudianteEF);
+					contexto.Estudiantes.AddOrUpdate(estudianteEF);
 					contexto.SaveChanges();
-				
+
 				}
-				return estudiante;
+				return estudianteE;
 			}
 			catch (Exception)
 			{
 
 				throw;
 			}
-		
+
 		}
-		
+
 		public static List<EstudianteEntidad> DevolverListaEstudiantes()
 		{
 			try
 			{
 				List<EstudianteEntidad> listaEstudiantes = new List<EstudianteEntidad>();
 				
-				using (TareaGrupalEntities contexto = new TareaGrupalEntities()) {
+				using (ProyectoFinalPAEntities contexto = new ProyectoFinalPAEntities()) {
 
-					var ms = contexto.Estudiante.Include("Genero").
-												Include("Docente").
-												Include("Informes").
-												Include("Carreras").ToList();
+					var ms = contexto.Estudiantes.ToList();
 
 					foreach (var item in ms)
 					{
 						listaEstudiantes.Add(new EstudianteEntidad(item.id, item.cedula, 
-							item.nombre, item.apellido, (DateTime)item.fecha_nacimiento, 
-							char.Parse(item.estado_civil), (int)item.id_carrera, 
-							item.tema, (int)item.id_docente, (int)item.id_genero));
+							item.apellido, item.nombre, (DateTime)item.fecha_nacimiento,
+                            CarreraDatos.DevolverCarreraId((int)item.id_carrera),
+                            GéneroDatos.DevolverGéneroId((int)item.id_genero), item.foto));
 					
 					}	
 				}
+
+				
+
                 return listaEstudiantes;
 
             }
@@ -125,85 +126,78 @@ namespace ArquitecturaDatos
 
 				EstudianteEntidad estudianteEntidad = new EstudianteEntidad();
 
-				using (TareaGrupalEntities contexto = new TareaGrupalEntities())
+				using (ProyectoFinalPAEntities contexto = new ProyectoFinalPAEntities())
 				{
-                    var estudianteEF = contexto.Estudiante.Include("Genero").
-                                                Include("Docente").
-                                                Include("Informes").
-                                                Include("Carreras").FirstOrDefault(p => p.id == id);
+					var estudianteEF = contexto.Estudiantes.Include("Genero").
+												Include("CuentasDocente").
+												Include("Informes").
+												Include("Carreras").FirstOrDefault(p => p.id == id);
 
-                    estudianteEntidad.Id = estudianteEF.id;
-                    estudianteEntidad.Nombre = estudianteEF.nombre;
-                    estudianteEntidad.Apellido = estudianteEF.apellido;
-                    estudianteEntidad.Cedula = estudianteEF.cedula;
-                    estudianteEntidad.FechaNacimiento = (DateTime) estudianteEF.fecha_nacimiento;
-                    estudianteEntidad.EstadoCivil= char.Parse(estudianteEF.estado_civil);
-                    estudianteEntidad.IdCarrera = (int)estudianteEF.id_carrera;
-                    estudianteEntidad.Tema= estudianteEF.tema;
-                    estudianteEntidad.IdDocente = (int)estudianteEF.id_docente;
-                    estudianteEntidad.IdGenero = (int)estudianteEF.id_genero;
-                }
+					estudianteEntidad.Id = estudianteEF.id;
+					estudianteEntidad.Nombre = estudianteEF.nombre;
+					estudianteEntidad.Apellido = estudianteEF.apellido;
+					estudianteEntidad.FechaNacimiento = (DateTime) estudianteEF.fecha_nacimiento;
+					estudianteEntidad.Carrera = CarreraDatos.DevolverCarreraId((int) estudianteEF.id_carrera);
+					estudianteEntidad.Género = GéneroDatos.DevolverGéneroId((int) estudianteEF.id_genero);
+					estudianteEntidad.Foto = estudianteEF.foto;
+				}
 				return estudianteEntidad;
 
-            }
+			}
 			catch (Exception)
 			{
 
 				throw;
 			}
-		
+
 		}
 
-        public static bool EliminarEstudianteId(int id)
-        {
-            try
-            {
-                using (TareaGrupalEntities contexto = new TareaGrupalEntities())
-                {
-                    Docente docenteEF = contexto.Docente
-                                                  .FirstOrDefault(p => p.id == id);
-                    contexto.Docente.Remove(docenteEF);
-                    contexto.SaveChanges();
-                    return true;
-                }
+		public static bool EliminarEstudianteId(int id)
+		{
+			try
+			{
+				using (ProyectoFinalPAEntities contexto = new ProyectoFinalPAEntities())
+				{
+					Estudiantes docenteEF = contexto.Estudiantes
+												  .FirstOrDefault(p => p.id == id);
+					contexto.Estudiantes.Remove(docenteEF);
+					contexto.SaveChanges();
+					return true;
+				}
 
-            }
-            catch (Exception)
-            {
-                return false;
-                throw;
-            }
-        }
+			}
+			catch (Exception)
+			{
+				return false;
+				throw;
+			}
+		}
 
-        public static List<EstudianteEntidad> DevolverListaEstudiantesFiltro(FiltradorBuilderEntidad filtro) {
+		public static List<EstudianteEntidad> DevolverListaEstudiantesFiltro(FiltradorBuilderEntidad filtro) {
 			try {
 				List<EstudianteEntidad> listaEstudiantes = new List<EstudianteEntidad>();
-				List<Estudiante> listaEstudiantesLINQ = new List<Estudiante>();
-				using (TareaGrupalEntities contexto = new TareaGrupalEntities()) {
-                    var resultado = contexto.Estudiante.SqlQuery(@"SELECT id
+				List<Estudiantes> listaEstudiantesEF = new List<Estudiantes>();
+				using (ProyectoFinalPAEntities contexto = new ProyectoFinalPAEntities()) {
+					var resultado = contexto.Estudiantes.SqlQuery(@"SELECT id
                                                                       ,cedula
 																	  ,apellido
 																	  ,nombre
+																	  ,fecha_nacimiento
 																	  ,id_carrera
 																	  ,id_genero
-																	  ,añoAP
-																	  ,mesAP
-																	  ,id_docente
-																	  FROM Estudiante
+																	  FROM [EstudiantesTesis]
 																	  " +
-                                            filtro.ConstruirTextoFiltro(), filtro.ConstruirParametros());
+											filtro.ConstruirTextoFiltro(), filtro.ConstruirParametros());
 
-                    listaEstudiantesLINQ = resultado.ToList();
+					listaEstudiantesEF = resultado.ToList();
 
 
-					//foreach (var item in listaEstudiantesLINQ) {
-					//	listaEstudiantes.Add(new EstudianteEntidad(item.id, item.cedula,
-					//												item.apellido, item.nombre,
-					//											(int) item.id_carrera, item.Carreras.nombre, (int) item.id_genero,
-					//											item.Genero.nombre, (int) item.añoAP,
-					//											(int) item.mesAP,
-					//											(int) item.id_docente));
-					//}
+					foreach (var item in listaEstudiantesEF) {
+                        listaEstudiantes.Add(new EstudianteEntidad(item.id, item.cedula,
+                            item.apellido, item.nombre, (DateTime)item.fecha_nacimiento,
+                            CarreraDatos.DevolverCarreraId((int)item.id_carrera),
+                            GéneroDatos.DevolverGéneroId((int)item.id_genero), item.foto));
+                    }
 
 					return listaEstudiantes;
 
@@ -217,14 +211,14 @@ namespace ArquitecturaDatos
 		{
 			try
 			{
-				using(TareaGrupalEntities contexto =  new TareaGrupalEntities())
+				using (ProyectoFinalPAEntities contexto = new ProyectoFinalPAEntities())
 				{
 
-					Estudiante estudianteEF = contexto.Estudiante.FirstOrDefault(p=> p.id == id);
-				contexto.Estudiante.Remove(estudianteEF);
+					Estudiantes estudianteEF = contexto.Estudiantes.FirstOrDefault(p => p.id == id);
+					contexto.Estudiantes.Remove(estudianteEF);
 					contexto.SaveChanges();
 					return true;
-				
+
 				}
 
 			}
@@ -236,12 +230,12 @@ namespace ArquitecturaDatos
 		}
 
 
-        public static List<EstudianteEntidad> DevolverListaCSV()
-        {
-            throw new NotImplementedException();
-        }
+		public static List<EstudianteEntidad> DevolverListaCSV()
+		{
+			throw new NotImplementedException();
+		}
 
-        
-    }
+
+	}
 
 }

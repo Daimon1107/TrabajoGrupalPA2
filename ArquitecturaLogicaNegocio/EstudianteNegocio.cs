@@ -10,18 +10,18 @@ namespace ArquitecturaLogicaNegocio
 {
     public static class EstudianteNegocio
     {
-        public static EstudianteEntidad GuardarEstudiante(EstudianteEntidad estudiante)
+        public static EstudianteEntidad GuardarEstudiante(EstudianteEntidad Estudiantes)
         {
-            if (estudiante.Id == 0)
+            if (Estudiantes.Id == 0)
             {
-                return EstudianteDatos.NuevoEstudiante(estudiante);
+                return EstudianteDatos.NuevoEstudiante(Estudiantes);
             }
-            return EstudianteDatos.ActualizarEstudiante(estudiante);
+            return EstudianteDatos.ActualizarEstudiante(Estudiantes);
 
         }
-        public static EstudianteEntidad AñadirEstudianteCSV(EstudianteEntidad estudiante)
+        public static EstudianteEntidad AñadirEstudianteCSV(EstudianteEntidad Estudiantes)
         {
-            return EstudianteDatos.NuevoEstudianteCSV(estudiante);
+            return EstudianteDatos.NuevoEstudianteCSV(Estudiantes);
         }
         public static List<EstudianteEntidad> DevolverListaEstudiantes()
         {

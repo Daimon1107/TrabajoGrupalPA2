@@ -16,7 +16,7 @@ namespace ArquitecturaPresentacion
     public partial class Form_Estudiante : Form
     {
 
-        EstudianteEntidad estudiante = new EstudianteEntidad();
+        EstudianteEntidad Estudiantes = new EstudianteEntidad();
         public Form_Estudiante()
         {
             InitializeComponent();
@@ -64,22 +64,22 @@ namespace ArquitecturaPresentacion
         private void GuardarEstudiante()
         {
 
-            estudiante.Nombre = textBox_Nombre.Text;
-            estudiante.Apellido = textBox_Apellido.Text;
-            estudiante.Cedula = textBox_Cedula.Text;
-            estudiante.FechaNacimiento = dateTimePicker_FechaNacimiento.Value;
-            estudiante.EstadoCivil = char.Parse(textBox_EstadoCivil.Text);
-            estudiante.IdCarrera = Convert.ToInt32(comboBox_Carrera.SelectedValue);
-            estudiante.IdGenero = Convert.ToInt32(comboBox_Genero.SelectedValue);
-            estudiante.IdDocente = Convert.ToInt32(comboBox_Docente.SelectedValue);
-            estudiante.Tema = textBox_Tema.Text;
+            Estudiantes.Nombre = textBox_Nombre.Text;
+            Estudiantes.Apellido = textBox_Apellido.Text;
+            Estudiantes.Cedula = textBox_Cedula.Text;
+            Estudiantes.FechaNacimiento = dateTimePicker_FechaNacimiento.Value;
+            Estudiantes.EstadoCivil = char.Parse(textBox_EstadoCivil.Text);
+            Estudiantes.IdCarrera = Convert.ToInt32(comboBox_Carrera.SelectedValue);
+            Estudiantes.IdGenero = Convert.ToInt32(comboBox_Genero.SelectedValue);
+            Estudiantes.IdDocente = Convert.ToInt32(comboBox_Docente.SelectedValue);
+            Estudiantes.Tema = textBox_Tema.Text;
 
 
-            estudiante = EstudianteNegocio.GuardarEstudiante(estudiante);
+           // Estudiantes = EstudianteNegocio.GuardarEstudiante(Estudiantes);
 
-            if (estudiante != null)
+            if (Estudiantes != null)
             {
-                textBox_Id.Text = estudiante.Id.ToString();
+                textBox_Id.Text = Estudiantes.Id.ToString();
                 CargarListadoEstudiantes();
                 MessageBox.Show("Los datos se guardaron exitosamente");
             }
@@ -99,16 +99,16 @@ namespace ArquitecturaPresentacion
 
         private void CargarValoresEstudianteId(int id)
         {
-            estudiante = EstudianteNegocio.DevolverEstudianteId(id);
-            textBox_Id.Text = estudiante.Id.ToString();
-            textBox_Nombre.Text = estudiante.Nombre;
-            textBox_Apellido.Text = estudiante.Apellido;
-            textBox_Cedula.Text = estudiante.Cedula;
-            dateTimePicker_FechaNacimiento.Value = estudiante.FechaNacimiento;
-            textBox_Tema.Text = estudiante.Tema;
-            comboBox_Carrera.SelectedValue = estudiante.IdCarrera;
-            comboBox_Docente.SelectedValue = estudiante.IdDocente;
-            comboBox_Genero.SelectedValue = estudiante.IdGenero;
+           // Estudiantes = EstudianteNegocio.DevolverEstudianteId(id);
+            textBox_Id.Text = Estudiantes.Id.ToString();
+            textBox_Nombre.Text = Estudiantes.Nombre;
+            textBox_Apellido.Text = Estudiantes.Apellido;
+            textBox_Cedula.Text = Estudiantes.Cedula;
+            dateTimePicker_FechaNacimiento.Value = Estudiantes.FechaNacimiento;
+            textBox_Tema.Text = Estudiantes.Tema;
+            comboBox_Carrera.SelectedValue = Estudiantes.IdCarrera;
+            comboBox_Docente.SelectedValue = Estudiantes.IdDocente;
+            comboBox_Genero.SelectedValue = Estudiantes.IdGenero;
         }
 
         private void button_Eliminar_Click(object sender, EventArgs e)
@@ -119,13 +119,13 @@ namespace ArquitecturaPresentacion
         private void EliminarDocente()
         {
             if (MessageBox.Show("¿Está seguro de eliminar permanentemente  el registro?",
-                                "Eliminación de Estudiante",
+                                "Eliminación de Estudiantes",
                                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 // Invocar a Negocio Eliminar
-                if (DocenteNegocio.EliminarDocenteID(estudiante.Id))
+                if (DocenteNegocio.EliminarDocenteID(Estudiantes.Id))
                 {
-                    MessageBox.Show("Se ha eliminado el dato con el ID " + estudiante.Id + ".",
+                    MessageBox.Show("Se ha eliminado el dato con el ID " + Estudiantes.Id + ".",
                                 "Eliminación de Paciente",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Information);
@@ -141,16 +141,16 @@ namespace ArquitecturaPresentacion
 
         private void EncerarCampos()
         {
-            estudiante = new EstudianteEntidad();
+            Estudiantes = new EstudianteEntidad();
             textBox_Id.Text = string.Empty;
-            textBox_Nombre.Text = estudiante.Nombre;
-            textBox_Apellido.Text = estudiante.Apellido;
-            textBox_Cedula.Text = estudiante.Cedula;
+            textBox_Nombre.Text = Estudiantes.Nombre;
+            textBox_Apellido.Text = Estudiantes.Apellido;
+            textBox_Cedula.Text = Estudiantes.Cedula;
             dateTimePicker_FechaNacimiento.Value = DateTime.Now;
-            textBox_Tema.Text = estudiante.Tema;
-            comboBox_Carrera.SelectedValue = estudiante.IdCarrera;
-            comboBox_Docente.SelectedValue = estudiante.IdDocente;
-            comboBox_Genero.SelectedValue = estudiante.IdGenero;
+            textBox_Tema.Text = Estudiantes.Tema;
+            comboBox_Carrera.SelectedValue = Estudiantes.IdCarrera;
+            comboBox_Docente.SelectedValue = Estudiantes.IdDocente;
+            comboBox_Genero.SelectedValue = Estudiantes.IdGenero;
 
         }
 
@@ -179,16 +179,17 @@ namespace ArquitecturaPresentacion
             //    Console.WriteLine("estado civil: " + item.EstadoCivil);
             //    Console.WriteLine("carrera: " + item.IdCarrera);
             //    Console.WriteLine("tema: " + item.Tema);
-            //    Console.WriteLine("docente: " + item.IdDocente);
+            //    Console.WriteLine("CuentasDocente: " + item.IdDocente);
             //    Console.WriteLine("genero: " + item.IdGenero);
 
             //}
 
-            //estudiante = EstudianteNegocio.AñadirEstudianteCSV(verificar);
+            // TODO: Resolver este error
+            //Estudiantes = EstudianteNegocio.AñadirEstudianteCSV(verificar);
 
-            if (estudiante != null)
+            if (Estudiantes != null)
             {
-                textBox_Id.Text = estudiante.Id.ToString();
+                textBox_Id.Text = Estudiantes.Id.ToString();
                 CargarListadoEstudiantes();
                 MessageBox.Show("Los datos se guardaron exitosamente");
             }
@@ -228,10 +229,10 @@ namespace ArquitecturaPresentacion
                         int idDocente = Convert.ToInt32(parts[8]);
                         int idGenero = Convert.ToInt32(parts[9]);
 
-                        var registro = new EstudianteEntidad(id,cedula,nombre,
-                            apellido,fechaNacimiento,estadoCivil,idCarrera,tema,idDocente,idGenero);
+                       // var registro = new EstudianteEntidad(id,cedula,nombre,
+                        //    apellido,fechaNacimiento,estadoCivil,idCarrera,tema,idDocente,idGenero);
 
-                        registros.Add(registro);
+                       // registros.Add(registro);
                     }
                 }
             }

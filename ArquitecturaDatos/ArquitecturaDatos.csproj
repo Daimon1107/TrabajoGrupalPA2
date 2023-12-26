@@ -50,30 +50,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActividadDatos.cs" />
+    <Compile Include="Actividades.cs">
+      <DependentUpon>ModeloEF.tt</DependentUpon>
+    </Compile>
     <Compile Include="CarreraDatos.cs" />
     <Compile Include="Carreras.cs">
       <DependentUpon>ModeloEF.tt</DependentUpon>
     </Compile>
-    <Compile Include="Docente.cs">
+    <Compile Include="CuentasDocente.cs">
       <DependentUpon>ModeloEF.tt</DependentUpon>
     </Compile>
-    <Compile Include="DocenteDatos.cs" />
-    <Compile Include="Estudiante.cs">
-      <DependentUpon>ModeloEF.tt</DependentUpon>
-    </Compile>
+    <Compile Include="CuentaDocenteDatos.cs" />
     <Compile Include="EstudianteDatos.cs" />
-    <Compile Include="Facultad.cs">
+    <Compile Include="Estudiantes.cs">
       <DependentUpon>ModeloEF.tt</DependentUpon>
     </Compile>
     <Compile Include="FacultadDatos.cs" />
-    <Compile Include="Genero.cs">
+    <Compile Include="Facultades.cs">
       <DependentUpon>ModeloEF.tt</DependentUpon>
     </Compile>
     <Compile Include="GéneroDatos.cs" />
-    <Compile Include="InformeDatos.cs" />
-    <Compile Include="Informes.cs">
+    <Compile Include="Géneros.cs">
       <DependentUpon>ModeloEF.tt</DependentUpon>
     </Compile>
+    <Compile Include="Maestro_Tesis.cs">
+      <DependentUpon>ModeloEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Maestro_TesisDatos.cs" />
     <Compile Include="ModeloEF.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -96,6 +100,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="sysdiagrams.cs">
+      <DependentUpon>ModeloEF.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UsuarioDatos.cs" />
+    <Compile Include="Usuarios.cs">
       <DependentUpon>ModeloEF.tt</DependentUpon>
     </Compile>
   </ItemGroup>

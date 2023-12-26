@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace ArquitecturaLogicaNegocio {
     public class DocenteNegocio {
-        public static bool ComprobarSesiónVálida(DocenteEntidad docenteE) {
-            docenteE = DocenteDatos.ComprobarSesiónVálida(docenteE);
+        public static bool ComprobarSesiónVálida(CuentaDocenteEntidad docenteE) {
+            docenteE = UsuarioDatos.ComprobarSesiónVálida(docenteE.Usuario, docenteE.C);
 
             if(docenteE == null) {
                 return false;
@@ -19,31 +19,31 @@ namespace ArquitecturaLogicaNegocio {
             return true;
         }
 
-        public static DocenteEntidad GuardarDocente(DocenteEntidad docente)
+        public static CuentaDocenteEntidad GuardarDocente(CuentaDocenteEntidad CuentasDocente)
         {
-             if (docente.Id == 0)
+             if (CuentasDocente.Id == 0)
             {
 
-                return DocenteDatos.NuevoDocente(docente);
+                return CuentaDocenteDatos.NuevoDocente(CuentasDocente);
                
             }
 
-            return DocenteDatos.ActualizarDocente(docente);
+            return CuentaDocenteDatos.ActualizarDocente(CuentasDocente);
         }
 
-        public static List<DocenteEntidad> DevolverListaDocentes()
+        public static List<CuentaDocenteEntidad> DevolverListaDocentes()
         {
-            return DocenteDatos.DevolverListaDocentes();
+            return CuentaDocenteDatos.DevolverListaDocentes();
         }
 
-        public static DocenteEntidad DevolverDocenteId(int id)
+        public static CuentaDocenteEntidad DevolverDocenteId(int id)
         {
-            return DocenteDatos.DevolverDocenteID(id);
+            return CuentaDocenteDatos.DevolverDocenteID(id);
         }
 
         public static bool EliminarDocenteID(int id)
         {
-            return DocenteDatos.EliminarDocenteId(id);
+            return CuentaDocenteDatos.EliminarDocenteId(id);
         }
     }
 }

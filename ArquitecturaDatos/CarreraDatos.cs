@@ -20,10 +20,10 @@ namespace ArquitecturaDatos
 				Carreras carreraEF = new Carreras();
 				carreraEF.id = carrera.Id;
 				carreraEF.nombre = carrera.Nombre;
-				carreraEF.id_facultad = carrera.Id_Facultad;
+				carreraEF.id_facultad = carrera.Facultad.Id;
 
 
-				using (TareaGrupalEntities contexto = new TareaGrupalEntities())
+				using (ProyectoFinalPAEntities contexto = new ProyectoFinalPAEntities())
 				{ 
 				contexto.Carreras.Add(carreraEF);
 					contexto.SaveChanges();
@@ -48,9 +48,9 @@ namespace ArquitecturaDatos
                 Carreras carreraEF = new Carreras();
                 carreraEF.id = carrera.Id;
 				carreraEF.nombre = carrera.Nombre;
-				carreraEF.id_facultad = carrera.Id_Facultad;
+				carreraEF.id_facultad = carrera.Facultad.Id;
 
-				using (TareaGrupalEntities contexto = new TareaGrupalEntities())
+				using (ProyectoFinalPAEntities contexto = new ProyectoFinalPAEntities())
 				{ 
 				contexto.Carreras.AddOrUpdate(carreraEF);
 					contexto.SaveChanges();	
@@ -69,12 +69,13 @@ namespace ArquitecturaDatos
 			try
 			{
 				List<CarreraEntidad> listaCarreras = new List<CarreraEntidad>();
-				using (TareaGrupalEntities contexto = new TareaGrupalEntities())
+				using (ProyectoFinalPAEntities contexto = new ProyectoFinalPAEntities())
 				{
-					var ms = contexto.Carreras.Include("Facultad").ToList();
+					var ms = contexto.Carreras.ToList();
                     foreach (var item in ms)
                     {
-						listaCarreras.Add(new CarreraEntidad(item.id, item.nombre, (int) item.id_facultad));
+						listaCarreras.Add(
+							new CarreraEntidad(item.id, item.nombre, FacultadDatos.DevolverFacultadId((int) item.id_facultad)));
                     }
 
                 }
@@ -93,14 +94,12 @@ namespace ArquitecturaDatos
 			try
 			{
 				CarreraEntidad carreraEntidad = new CarreraEntidad();
-				using (TareaGrupalEntities contexto = new TareaGrupalEntities())
+				using (ProyectoFinalPAEntities contexto = new ProyectoFinalPAEntities())
 				{ 
 				var carreraEF = contexto.Carreras.Include("Facultad").FirstOrDefault(c => c.id == id);
 					carreraEntidad.Id = carreraEF.id;
 					carreraEntidad.Nombre = carreraEF.nombre;
-					carreraEntidad.Id_Facultad = (int) carreraEF.id_facultad;
-					carreraEntidad.Facultad = carreraEF.Facultad.nombre;
-
+					carreraEntidad.Facultad = FacultadDatos.DevolverFacultadId((int)carreraEF.id_facultad);
 				}
 
 				return carreraEntidad;
@@ -117,7 +116,7 @@ namespace ArquitecturaDatos
 		{
 			try
 			{
-				using (TareaGrupalEntities contexto = new TareaGrupalEntities()) 
+				using (ProyectoFinalPAEntities contexto = new ProyectoFinalPAEntities()) 
 				{ 
 				Carreras carreraEF = contexto.Carreras.FirstOrDefault(c => c.id == id);
 					contexto.Carreras.Remove(carreraEF);

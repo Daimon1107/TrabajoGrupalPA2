@@ -14,7 +14,7 @@ namespace ArquitecturaPresentacion
 {
     public partial class Form_Docente : Form
     {
-        DocenteEntidad docente = new DocenteEntidad();
+        CuentaDocenteEntidad CuentasDocente = new CuentaDocenteEntidad();
         public Form_Docente()
         {
             InitializeComponent();
@@ -45,18 +45,18 @@ namespace ArquitecturaPresentacion
 
         private void GuardarDocente()
         {
-          docente.Nombre = textBox_Nombre.Text;
-        docente.Apellido = textBox_Apellido.Text;   
-            docente.Cedula = textBox_Cedula.Text;
-            docente.FechaNacimiento = dateTimePicker_FechaNacimiento.Value;
-            docente.IdFacultad = Convert.ToInt32(comboBox_Facultad.SelectedValue);
+          CuentasDocente.Nombre = textBox_Nombre.Text;
+        CuentasDocente.Apellido = textBox_Apellido.Text;   
+            CuentasDocente.Cedula = textBox_Cedula.Text;
+            CuentasDocente.FechaNacimiento = dateTimePicker_FechaNacimiento.Value;
+          //  CuentasDocente.IdFacultad = Convert.ToInt32(comboBox_Facultad.SelectedValue);
 
 
-            docente = DocenteNegocio.GuardarDocente(docente);
+            CuentasDocente = DocenteNegocio.GuardarDocente(CuentasDocente);
 
-            if (docente != null)
+            if (CuentasDocente != null)
             {
-                textBox_Id.Text = docente.Id.ToString();
+                textBox_Id.Text = CuentasDocente.Id.ToString();
                 CargarListadoDocentes();
                 MessageBox.Show("Los datos se guardaron exitosamente");
             }
@@ -76,13 +76,13 @@ namespace ArquitecturaPresentacion
         private void CargarValoresDocenteId(int id)
         {
 
-            docente = DocenteNegocio.DevolverDocenteId(id);
-            textBox_Id.Text = docente.Id.ToString();
-            textBox_Cedula.Text = docente.Cedula;
-            textBox_Nombre.Text = docente.Nombre;
-            textBox_Apellido.Text = docente.Apellido;
-            dateTimePicker_FechaNacimiento.Value = docente.FechaNacimiento;
-            comboBox_Facultad.SelectedValue = docente.IdFacultad;
+            CuentasDocente = DocenteNegocio.DevolverDocenteId(id);
+            textBox_Id.Text = CuentasDocente.Id.ToString();
+            textBox_Cedula.Text = CuentasDocente.Cedula;
+            textBox_Nombre.Text = CuentasDocente.Nombre;
+            textBox_Apellido.Text = CuentasDocente.Apellido;
+            dateTimePicker_FechaNacimiento.Value = CuentasDocente.FechaNacimiento;
+          //  comboBox_Facultad.SelectedValue = CuentasDocente.IdFacultad;
 
           }
 
@@ -94,13 +94,13 @@ namespace ArquitecturaPresentacion
         private void EliminarDocente()
         {
             if (MessageBox.Show("¿Está seguro de eliminar permanentemente  el registro?",
-                               "Eliminación de Docente",
+                               "Eliminación de CuentasDocente",
                                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 // Invocar a Negocio Eliminar
-                if (DocenteNegocio.EliminarDocenteID(docente.Id))
+                if (DocenteNegocio.EliminarDocenteID(CuentasDocente.Id))
                 {
-                    MessageBox.Show("Se ha eliminado el dato con el ID " + docente.Id + ".",
+                    MessageBox.Show("Se ha eliminado el dato con el ID " + CuentasDocente.Id + ".",
                                 "Eliminación de Paciente",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Information);
@@ -121,12 +121,12 @@ namespace ArquitecturaPresentacion
 
         private void EncerarCampos()
         {
-            docente= new DocenteEntidad();
+            CuentasDocente= new CuentaDocenteEntidad();
             textBox_Id.Text = string.Empty;
-            textBox_Nombre.Text = docente.Nombre;
-            textBox_Apellido.Text = docente.Apellido;
-            textBox_Cedula.Text = docente.Cedula;
-            comboBox_Facultad.SelectedValue = docente.IdFacultad;
+            textBox_Nombre.Text = CuentasDocente.Nombre;
+            textBox_Apellido.Text = CuentasDocente.Apellido;
+            textBox_Cedula.Text = CuentasDocente.Cedula;
+          //  comboBox_Facultad.SelectedValue = CuentasDocente.IdFacultad;
             dateTimePicker_FechaNacimiento.Value = DateTime.Now;
  
         }

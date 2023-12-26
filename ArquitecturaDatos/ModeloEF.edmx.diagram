@@ -4,20 +4,25 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="98b37ab973fa441c8559f57d2d0e074d" Name="Diagram1">
-        <EntityTypeShape EntityType="TareaGrupalModel.Carreras" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="TareaGrupalModel.Docente" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TareaGrupalModel.Estudiante" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TareaGrupalModel.Facultad" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TareaGrupalModel.Genero" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TareaGrupalModel.Informes" Width="1.5" PointX="7.5" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TareaGrupalModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="TareaGrupalModel.FK_Carreras_Facultad" ManuallyRouted="false" />
-        <AssociationConnector Association="TareaGrupalModel.FK_Estudiante_Carreras1" ManuallyRouted="false" />
-        <AssociationConnector Association="TareaGrupalModel.FK_Docente_Facultad" ManuallyRouted="false" />
-        <AssociationConnector Association="TareaGrupalModel.FK_Estudiante_Docente" ManuallyRouted="false" />
-        <AssociationConnector Association="TareaGrupalModel.FK_Estudiante_Genero" ManuallyRouted="false" />
-        <AssociationConnector Association="TareaGrupalModel.FK_Informes_Estudiante1" ManuallyRouted="false" />
+      <Diagram DiagramId="f527f97d1c024d4f8168c0bb8c8cba21" Name="Diagram1">
+        <EntityTypeShape EntityType="ProyectoFinalPAModel.Actividades" Width="1.5" PointX="9.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoFinalPAModel.Carreras" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoFinalPAModel.CuentasDocente" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoFinalPAModel.Estudiantes" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoFinalPAModel.Facultades" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoFinalPAModel.Géneros" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoFinalPAModel.Maestro_Tesis" Width="1.5" PointX="7.5" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoFinalPAModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProyectoFinalPAModel.Usuarios" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
+        <AssociationConnector Association="ProyectoFinalPAModel.FK_Actividades_Maestro_Tesis" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoFinalPAModel.FK_Carreras_Facultades" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoFinalPAModel.FK_Estudiantes_Carreras" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoFinalPAModel.FK_CuentasDocente_Facultades" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoFinalPAModel.FK_CuentasDocente_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoFinalPAModel.FK_Maestro_Tesis_CuentasDocente" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoFinalPAModel.FK_Estudiantes_Géneros1" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoFinalPAModel.FK_Maestro_Tesis_Estudiantes" ManuallyRouted="false" />
+        <AssociationConnector Association="ProyectoFinalPAModel.FK_Usuarios_Géneros" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

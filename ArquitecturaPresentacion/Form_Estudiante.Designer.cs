@@ -329,7 +329,7 @@
             this.Controls.Add(this.textBox_Cedula);
             this.Controls.Add(this.label1);
             this.Name = "Form_Estudiante";
-            this.Text = "Estudiante";
+            this.Text = "Estudiantes";
             this.Load += new System.EventHandler(this.Form_Estudiante_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView_Estudiante)).EndInit();
             this.ResumeLayout(false);
